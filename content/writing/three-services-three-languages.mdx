@@ -1,0 +1,36 @@
+---
+title: "Three services, three languages: what broke at the seams"
+description: "TODO — 150–160 chars. The .NET / Spring Boot / Next.js boundary: contract versioning, serialisation, latency at the joins, and whether the split was right."
+publishedAt: "2026-09-14"
+updatedAt: null
+tags: ["distributed-systems", "dotnet", "spring-boot"]
+canonical: null
+draft: true
+---
+
+## Why three languages at all
+
+**TODO:** Explain the split honestly — was it deliberate, inherited, or both?
+The reader is judging whether you understand the trade-off, not whether the
+answer was "clean".
+
+## Where the seams leaked
+
+**TODO:** Contract versioning, serialisation mismatches, latency at the joins.
+Give at least one specific, defensible example.
+
+```csharp
+// TODO: one real, illustrative code sample (this block exists to show
+// build-time syntax highlighting renders — replace with your own).
+public record TransferRequest(string From, string To, decimal Amount);
+```
+
+## What I'd do differently
+
+**TODO:** One honest paragraph. Was the split worth it?
+
+---
+
+_This is the first of the five posts in the writing plan (§8.2). It stays a
+draft until the prose and a real code sample are in — drafts are hidden from the
+production build automatically._

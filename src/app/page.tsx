@@ -1,12 +1,20 @@
 import Link from "next/link";
 import { ScaleLedger } from "@/components/scale-ledger";
+import { getCaseStudies, getPosts } from "@/lib/content";
 
 /**
- * M1 foundation shell. Hero register per spec §4.1; proof-strip facts are the
- * non-fabricated attributes from §4.1 Block 2. Case studies, the MRZ band,
- * writing and metrics arrive in M2–M4 — deliberately not stubbed with invented
- * numbers here.
+ * Home (§4.1). Hero register per spec; proof-strip facts are the non-fabricated
+ * attributes from §4.1 Block 2. Selected work reads the featured case studies;
+ * the writing block only renders with ≥3 published posts (§4.1 Block 4).
  */
+
+function formatDate(iso: string) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime())
+    ? iso
+    : d.toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" });
+}
 
 const PROOF = [
   "Java · .NET · TypeScript · Python",
@@ -18,6 +26,12 @@ const PROOF = [
 ];
 
 export default function HomePage() {
+  const featured = getCaseStudies()
+    .filter((cs) => cs.featured)
+    .slice(0, 3);
+  const posts = getPosts().slice(0, 3);
+  const showWriting = posts.length >= 3; // §4.1 Block 4
+
   return (
     <div className="mx-auto max-w-[var(--container-content)] px-gutter">
       <section className="reveal py-20 sm:py-28">
@@ -68,6 +82,95 @@ export default function HomePage() {
       <div className="my-12">
         <ScaleLedger />
       </div>
+
+      {/* Block 3 — Selected work (§4.1). */}
+      <section aria-labelledby="work-heading" className="py-12">
+        <div className="flex items-baseline justify-between">
+          <h2
+            id="work-heading"
+            className="font-mono text-xs uppercase tracking-[0.2em] text-accent"
+          >
+            Selected work
+          </h2>
+          <Link
+            href="/work"
+            className="font-mono text-xs text-fg-dim hover:text-accent"
+          >
+            All work →
+          </Link>
+        </div>
+
+        <ol className="mt-6 divide-y divide-border border-y border-border">
+          {featured.map((cs, i) => (
+            <li key={cs.slug}>
+              <Link
+                href={`/work/${cs.slug}`}
+                className="group block py-7 transition-colors hover:bg-bg-raised"
+              >
+                <div className="flex items-baseline justify-between gap-4 font-mono text-xs text-fg-dim">
+                  <span>{String(i + 1).padStart(2, "0")}</span>
+                  {cs.confidential && (
+                    <span className="uppercase tracking-wider">NDA</span>
+                  )}
+                </div>
+                <h3 className="mt-2 text-lg font-semibold tracking-tight text-fg group-hover:text-accent">
+                  {cs.title}
+                </h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {cs.problemType.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-sm border border-border px-2 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-fg-dim"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* Block 4 — Writing. Only renders with ≥3 published posts (§4.1). */}
+      {showWriting && (
+        <section aria-labelledby="writing-heading" className="py-12">
+          <div className="flex items-baseline justify-between">
+            <h2
+              id="writing-heading"
+              className="font-mono text-xs uppercase tracking-[0.2em] text-accent"
+            >
+              Writing
+            </h2>
+            <Link
+              href="/writing"
+              className="font-mono text-xs text-fg-dim hover:text-accent"
+            >
+              All writing →
+            </Link>
+          </div>
+          <ol className="mt-6 divide-y divide-border border-y border-border">
+            {posts.map((post) => (
+              <li key={post.slug}>
+                <Link
+                  href={`/writing/${post.slug}`}
+                  className="group block py-6 transition-colors hover:bg-bg-raised"
+                >
+                  <time
+                    dateTime={post.publishedAt}
+                    className="font-mono text-xs text-fg-dim"
+                  >
+                    {formatDate(post.publishedAt)}
+                  </time>
+                  <h3 className="mt-1 text-lg font-semibold tracking-tight text-fg group-hover:text-accent">
+                    {post.title}
+                  </h3>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
     </div>
   );
 }

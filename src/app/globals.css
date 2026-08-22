@@ -93,6 +93,18 @@ body {
   max-width: 68ch;
 }
 
+/* Shiki dual-theme wiring (rehype-shiki, defaultColor:false). Code colour
+ * follows the runtime theme via the emitted --shiki-* custom properties. */
+.shiki,
+.shiki span {
+  color: var(--shiki-dark);
+  background-color: transparent;
+}
+:root[data-theme="light"] .shiki,
+:root[data-theme="light"] .shiki span {
+  color: var(--shiki-light);
+}
+
 /* Quiet section-entry motion; disabled under reduced-motion (§6.2). */
 @media (prefers-reduced-motion: no-preference) {
   .reveal {

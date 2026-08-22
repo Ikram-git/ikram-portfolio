@@ -1,0 +1,51 @@
+---
+title: "A retrieval pipeline over 18 million smart contracts"
+slug: "contract-analysis-pipeline"
+org: "TODO — org / context"
+role: "TODO — your role"
+period: "TODO — e.g. 2025"
+summary: "TODO — one sentence: what the pipeline did and what made 18M hard."
+problemType: ["data-engineering", "applied-ai", "retrieval"]
+domain: "on-chain-analysis"
+stack: ["Python", "FastAPI", "solc / py-solc-x", "vector search", "PostgreSQL"]
+metrics:
+  - label: "Smart contracts processed into the curated eval set"
+    value: "18M"
+  - label: "TODO — dedup ratio / eval-set size after curation"
+    value: "TODO"
+  - label: "TODO — retrieval latency or throughput"
+    value: "TODO"
+confidential: false
+featured: true
+order: 2
+draft: false
+---
+
+## Context
+
+**TODO:** What the pipeline was for and who consumed its output. Lead with the
+scale — 18 million contracts is the hook.
+
+## Constraint
+
+**TODO:** What made 18M hard — extraction cost, storage, dedup, building an
+evaluation set you can trust. Why retrieval beats a bare LLM for audit.
+
+## What I built
+
+**TODO:** Bytecode extraction with solc / py-solc-x, deduplication into a
+curated eval set, vector search, and the FastAPI service on top.
+
+## Decisions and trade-offs
+
+**TODO:** Two to four real forks — e.g. dedup strategy, chunking, which vector
+index, retrieval vs fine-tuning. Alternative rejected + why for each.
+
+## Outcome
+
+**TODO:** Numbers where possible (fill the frontmatter metrics), qualitative
+where not.
+
+## What I'd do differently
+
+**TODO:** One honest paragraph.
