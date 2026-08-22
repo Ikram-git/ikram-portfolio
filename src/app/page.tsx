@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ScaleLedger } from "@/components/scale-ledger";
 
 /**
  * M1 foundation shell. Hero register per spec §4.1; proof-strip facts are the
@@ -63,13 +64,10 @@ export default function HomePage() {
         </ul>
       </section>
 
-      {/* MRZ signature band lands in M2, here between hero and work (§5). */}
-      <section
-        aria-hidden="true"
-        className="my-12 rounded-sm border border-dashed border-border p-6 font-mono text-xs text-fg-dim"
-      >
-        MRZ machine-readable band — M2
-      </section>
+      {/* Signature element — scale-ledger strip, between hero and work (§5). */}
+      <div className="my-12">
+        <ScaleLedger />
+      </div>
     </div>
   );
 }
