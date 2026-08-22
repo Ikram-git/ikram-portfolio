@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Design tokens — "Instrumentation" system (spec §6.2)
+ * Raw palette lives here; semantic roles are theme-switchable below.
+ * ------------------------------------------------------------------ */
+:root {
+  /* raw palette */
+  --ink: #0b1020; /* deep instrument navy — page ground */
+  --ink-raised: #141a2e; /* raised surfaces, cards */
+  --paper: #e8e6df; /* document stock — primary text on dark */
+  --paper-dim: #8a8fa0; /* secondary text, labels */
+  --uv: #7b5cff; /* violet — links, focus, active data */
+  --verify: #35d0a5; /* valid state, success, check digits */
+  --rule: #232a42; /* hairlines, field delimiters */
+
+  /* semantic roles — DARK is the default theme */
+  --bg: var(--ink);
+  --bg-raised: var(--ink-raised);
+  --fg: var(--paper);
+  --fg-dim: var(--paper-dim);
+  --border: var(--rule);
+  --accent: var(--uv);
+  --ok: var(--verify);
+
+  color-scheme: dark;
+}
+
+/* LIGHT theme — invert ground/text, keep the violet accent (§6.2) */
+:root[data-theme="light"] {
+  --bg: var(--paper);
+  --bg-raised: #ffffff;
+  --fg: var(--ink);
+  --fg-dim: #55596b; /* AA-compliant dim on light ground */
+  --border: #d3d0c7;
+  --accent: #5b3fe0; /* slightly darker violet clears 4.5:1 on light */
+  --ok: #0f9d7a; /* darker verify-green for contrast on light ground */
+
+  color-scheme: light;
+}
+
+/* ------------------------------------------------------------------ *
+ * Tailwind theme mapping. `@theme inline` emits var() references so the
+ * utilities (bg-bg, text-fg, border-border, text-accent …) react to the
+ * runtime theme override on :root rather than baking a static value.
+ * ------------------------------------------------------------------ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-fg: var(--fg);
+  --color-fg-dim: var(--fg-dim);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-ok: var(--ok);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --spacing-gutter: 1.5rem;
+  --container-content: 1120px;
+}
+
+/* ------------------------------------------------------------------ *
+ * Base element styles
+ * ------------------------------------------------------------------ */
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "cv01", "ss01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible focus — never outline:none (§7.3). */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* Prose measure capped at 68ch (§6.2). */
+.measure {
+  max-width: 68ch;
+}
+
+/* Quiet section-entry motion; disabled under reduced-motion (§6.2). */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: reveal-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes reveal-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
