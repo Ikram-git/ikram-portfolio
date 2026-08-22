@@ -53,27 +53,7 @@ export default function HiringPage() {
         <div className="mt-4 divide-y divide-border border-y border-border">
           <Row label="Level">{LOOKING_FOR.level}</Row>
           <Row label="Focus">{LOOKING_FOR.focus.join(" · ")}</Row>
-          <Row label="Locations">
-            {isTodo(LOOKING_FOR.locations) ? (
-              <TodoInline text="priority locations/cities" />
-            ) : (
-              LOOKING_FOR.locations
-            )}
-          </Row>
-          <Row label="Earliest start">
-            {isTodo(LOOKING_FOR.earliestStart) ? (
-              <TodoInline text="earliest start date" />
-            ) : (
-              LOOKING_FOR.earliestStart
-            )}
-          </Row>
-          <Row label="Remote → relocate">
-            {isTodo(LOOKING_FOR.remoteThenRelocate) ? (
-              <TodoInline text="is remote-then-relocate on the table?" />
-            ) : (
-              LOOKING_FOR.remoteThenRelocate
-            )}
-          </Row>
+          <Row label="Earliest start">{LOOKING_FOR.earliestStart}</Row>
         </div>
       </section>
 

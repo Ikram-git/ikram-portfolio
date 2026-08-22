@@ -30,8 +30,7 @@ export const VISA_ROUTES: VisaRoute[] = [
     flag: "🇳🇱",
     country: "Netherlands",
     route: "Highly Skilled Migrant",
-    threshold:
-      "€4,357/mo (under 30) or €5,942/mo (30+), excl. 8% holiday allowance",
+    threshold: "€4,357/mo (under-30 rate), excl. 8% holiday allowance",
     employer: "Must be an IND-recognised sponsor; no labour-market test",
     timeline: "~2 weeks via a recognised sponsor",
     sourceLabel: "ind.nl",

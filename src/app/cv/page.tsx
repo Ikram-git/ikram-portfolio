@@ -55,8 +55,12 @@ export default function CvPage() {
             <a href={`mailto:${PROFILE.email}`} className="text-accent">
               {PROFILE.email}
             </a>
-            <span>github.com/… (TODO)</span>
-            <span>linkedin.com/… (TODO)</span>
+            <a href={PROFILE.github} className="text-accent">
+              {PROFILE.github.replace("https://", "")}
+            </a>
+            <a href={PROFILE.linkedin} className="text-accent">
+              {PROFILE.linkedin.replace("https://www.", "")}
+            </a>
           </p>
           <p className="measure mt-4 text-sm text-fg-dim">{PROFILE.tagline}</p>
         </header>

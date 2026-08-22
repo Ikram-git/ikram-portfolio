@@ -14,8 +14,8 @@ export const PROFILE = {
   nationality: "Pakistani",
   residency: "Hong Kong permanent resident",
   email: "sattarikram1@gmail.com",
-  github: "https://github.com/", // TODO — GitHub profile URL
-  linkedin: "https://www.linkedin.com/", // TODO — LinkedIn URL
+  github: "https://github.com/Ikram-git",
+  linkedin: "https://www.linkedin.com/in/ikram-sattar",
   scheduling: "", // TODO — Cal.com link (optional)
 } as const;
 
@@ -86,15 +86,13 @@ export const EDUCATION = {
 export const LOOKING_FOR = {
   level: "Mid-level full-stack (frontend + backend)",
   focus: ["Fintech & payments", "On-chain analysis", "Digital identity", "Platform"],
-  locations: "TODO — priority locations/cities in order",
-  earliestStart: "TODO — earliest start date",
-  remoteThenRelocate: "TODO — is remote-then-relocate on the table? (yes/no)",
+  earliestStart: "2 weeks from a signed offer",
 } as const;
 
 export const LOGISTICS = {
-  noticePeriod: "TODO — current notice period",
+  noticePeriod: "2 weeks",
   relocation: "Open to relocation; ready to relocate for the right role.",
   funding: "TODO — self-funded relocation, or support needed?",
   interviewOverlap:
-    "Comfortable interviewing across HKT/CET overlap (early-evening HKT = European morning/afternoon).",
+    "Comfortable interviewing across the HKT/European overlap (early-evening HKT).",
 } as const;
