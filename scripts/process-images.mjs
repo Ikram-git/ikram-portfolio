@@ -14,13 +14,15 @@ async function portrait() {
   const meta = await sharp(src).metadata();
   console.log("portrait source:", meta.width, "x", meta.height);
 
-  // Can't change the pose; lift it off the flat grey, sharpen, export crisp.
+  // Can't change the pose, but a 4:5 editorial crop (face larger, sides
+  // trimmed) reads far less like a square ID photo. Lift off the flat grey,
+  // sharpen, export crisp for retina.
   const out = path.join(pub, "ikram.jpg");
   await sharp(src)
-    .resize(1000, 1000, { fit: "cover", position: "top" })
+    .resize(1000, 1250, { fit: "cover", position: "north" }) // 4:5 portrait
     .normalise() // auto contrast — pulls the grey background/subject apart
-    .modulate({ brightness: 1.04, saturation: 1.06 })
-    .sharpen({ sigma: 1 })
+    .modulate({ brightness: 1.05, saturation: 1.05 })
+    .sharpen({ sigma: 1.1 })
     .jpeg({ quality: 90, mozjpeg: true })
     .toFile(out);
   console.log("wrote", out, fs.statSync(out).size, "bytes");

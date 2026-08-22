@@ -19,7 +19,7 @@ export default function AboutPage() {
               src="/ikram.jpg"
               alt="Portrait of Ikram Sattar"
               width={1000}
-              height={1000}
+              height={1250}
               className="h-auto w-full grayscale-[0.15]"
               priority
             />
