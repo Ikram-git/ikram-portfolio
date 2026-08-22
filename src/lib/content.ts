@@ -25,6 +25,10 @@ export type CaseStudyMeta = {
   domain: string;
   stack: string[];
   metrics: Metric[];
+  /** Optional live/public URL (portal, product, repo). Rendered only when http(s). */
+  liveUrl: string | null;
+  /** Optional label for the live link, e.g. "Live portal", "Repository". */
+  liveLabel: string;
   /** Renders the NDA note and suppresses client names. */
   confidential: boolean;
   featured: boolean;
@@ -112,6 +116,8 @@ function toCaseStudyMeta(
     domain: str(data.domain),
     stack: strArr(data.stack),
     metrics,
+    liveUrl: typeof data.liveUrl === "string" ? data.liveUrl : null,
+    liveLabel: str(data.liveLabel, "Live"),
     confidential: bool(data.confidential),
     featured: bool(data.featured),
     order: typeof data.order === "number" ? data.order : 999,

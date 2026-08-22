@@ -100,7 +100,7 @@ export default async function PostPage({
       </div>
 
       <footer className="measure mt-16 border-t border-border pt-6 font-mono text-xs text-fg-dim">
-        Ikram Sattar — backend systems engineer, relocating to Europe.{" "}
+        Ikram Sattar — full-stack developer, open to relocation.{" "}
         <Link href="/hiring" className="text-accent hover:underline">
           Hiring?
         </Link>

@@ -7,19 +7,19 @@ import "./globals.css";
 
 const SITE_NAME = "Ikram Sattar";
 const SITE_DESCRIPTION =
-  "Backend-leaning full-stack engineer who ships production systems where failure is expensive. Polyglot microservices, cross-region deployment, CI/CD, on-call ownership under SLA.";
+  "Full-stack developer who ships production systems where failure is expensive — fintech and on-chain analysis, digital identity, polyglot microservices, CI/CD and on-call ownership under SLA.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ikramsattar.dev"),
   title: {
-    default: `${SITE_NAME} — Backend Systems Engineer`,
+    default: `${SITE_NAME} — Full-Stack Developer`,
     template: `%s — ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Backend Systems Engineer`,
+    title: `${SITE_NAME} — Full-Stack Developer`,
     description: SITE_DESCRIPTION,
   },
   robots: { index: true, follow: true },

@@ -1,55 +1,63 @@
 ---
-title: "Polyglot microservices for a national-scale identity programme"
+title: "A national passport & ID application portal, built front to back"
 slug: "distributed-identity-platform"
 org: "Toppan Security"
-role: "Full Stack Developer"
+role: "Full-Stack Developer"
 period: "2024–2026"
-summary: "TODO — one sentence: what the system did and what made it hard."
-problemType: ["distributed-systems", "cloud-infrastructure", "production-ops"]
+summary: "TODO — one sentence: the public portal citizens use to apply for passports and national IDs, and what made it high-stakes."
+problemType: ["full-stack", "distributed-systems", "production-ops"]
 domain: "digital-identity"
-stack: ["C#/.NET", "Java/Spring Boot", "Next.js", "TypeScript", "PostgreSQL", "AWS", "Jenkins", "Docker"]
+stack: ["Next.js", "TypeScript", "C#/.NET", "Java/Spring Boot", "PostgreSQL", "AWS", "Jenkins", "Docker"]
 metrics:
-  - label: "TODO — throughput / p95 latency on inter-service REST"
+  - label: "TODO — applications processed / users served"
     value: "TODO"
-  - label: "TODO — regions in production (MEA)"
+  - label: "TODO — throughput / p95 latency on the API layer"
     value: "TODO"
   - label: "TODO — deploy frequency before → after Jenkins pipelines"
     value: "TODO"
+liveUrl: "TODO — public portal URL (I'll add it)"
+liveLabel: "Live portal"
 confidential: true
 featured: true
 order: 1
 draft: false
 ---
 
+{/* TODO (§11 #6): this is the public Ethiopian passport & national-ID
+application portal. Confirm with Toppan what can be named and linked. Once
+confirmed, add `liveUrl`, name the programme in Context below, and set
+`confidential: false` to drop the NDA note. Until then it stays confidential. */}
+
 ## Context
 
-**TODO:** What the system was for, who used it, at what scale. Keep it at
-architecture level — no client names, no country names beyond "MEA region".
+**TODO:** The public-facing portal citizens use to apply for passports and
+national IDs. You built it full-stack — the Next.js/TypeScript frontend users
+interact with and the C#/.NET + Java/Spring Boot services behind it. Say who
+uses it and at what scale.
 
 ## Constraint
 
-**TODO:** What made it hard — latency, throughput, cross-border, regulatory,
-SLA. This section is what separates a senior-reading engineer from a junior one,
-so make the hard part explicit and concrete.
+**TODO:** What made it high-stakes — a government identity programme where
+downtime and data errors are unacceptable, plus throughput, security-standards
+compliance, and SLA-bound support. This section separates a senior-reading
+engineer from a junior one.
 
 ## What I built
 
-**TODO:** Scope honestly. "I" where it was you, "we" where it wasn't. Cover the
-Next.js/TypeScript front, the C#/.NET and Java/Spring Boot services on
-PostgreSQL, the inter-service REST layer, and the AWS CI/CD.
+**TODO:** Front to back. The application portal UI, the services on PostgreSQL,
+the inter-service API layer, and the AWS CI/CD. "I" where it was you, "we" where
+it wasn't.
 
 ## Decisions and trade-offs
 
-**TODO:** Two to four real forks. For each: the decision, the alternative you
-rejected, and why. This is the highest-signal section — it reads like a
-system-design interview answer.
+**TODO:** Two to four real forks, each with the rejected alternative and why.
+This reads like a system-design interview answer.
 
 ## Outcome
 
 **TODO:** Numbers where possible (fill the frontmatter metrics), qualitative
-where not. Every number must be defensible.
+where not.
 
 ## What I'd do differently
 
-**TODO:** One honest paragraph. This raises perceived seniority more than any
-other section.
+**TODO:** One honest paragraph.

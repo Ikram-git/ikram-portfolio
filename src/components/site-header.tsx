@@ -11,7 +11,7 @@ const NAV = [
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-border">
+    <header className="border-b border-border print:hidden">
       <div className="mx-auto flex h-16 max-w-[var(--container-content)] items-center justify-between gap-4 px-gutter">
         <Link
           href="/"

@@ -56,8 +56,13 @@ is resolved before first paint by an inline script (`theme-script.tsx`), respect
 
 - **M1 — Foundation** ✅ Next.js + TS + Tailwind v4, tokens, self-hosted fonts, layout
   shell, theme toggle, CI + Lighthouse budget, deployable shell.
-- **M2 — Signature** — MRZ machine-readable band (OCR-B, check-digit arithmetic, a11y).
-- **M3 — Content pipeline** — MDX loading, Shiki, `/work` + `/writing`, RSS, OG images.
-- **M4 — Pages** — Home, `/hiring` (+ PDF), `/about`, `/cv`.
-- **M5 — Hardening** — a11y + contrast audit, Lighthouse per route, print stylesheet.
-- **M6 — Launch** — domain, analytics, Person schema.
+- **M2 — Signature** ✅ Scale-ledger strip (instrumentation/mono, data-driven).
+- **M3 — Content pipeline** ✅ MDX loading, Shiki, `/work` + `/writing`, RSS, OG images.
+- **M4 — Pages** ✅ Home, `/hiring` (+ print one-pager), `/about`, `/cv` (+ Person JSON-LD).
+- **M5 — Hardening** — a11y + contrast audit, Lighthouse per route, real-device testing.
+- **M6 — Launch** — domain, analytics.
+
+Positioning is **full-stack developer** (fintech · on-chain analysis · digital
+identity). Content across `content/**` and the `lib/profile.ts` / `lib/metrics.ts`
+data files is scaffolded with `TODO` blocks — Ikram fills real prose, metrics and
+links; nothing is fabricated.

@@ -93,6 +93,32 @@ body {
   max-width: 68ch;
 }
 
+/* Print — force an ink-friendly light palette for /cv and the /hiring one-pager,
+ * regardless of the on-screen theme. Site chrome uses `print:hidden`. */
+@media print {
+  :root,
+  :root[data-theme="light"],
+  :root[data-theme="dark"] {
+    --bg: #ffffff;
+    --bg-raised: #ffffff;
+    --fg: #000000;
+    --fg-dim: #333333;
+    --border: #cccccc;
+    --accent: #4a2fd0;
+    color-scheme: light;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  a {
+    text-decoration: underline;
+  }
+  @page {
+    margin: 1.4cm;
+  }
+}
+
 /* Shiki dual-theme wiring (rehype-shiki, defaultColor:false). Code colour
  * follows the runtime theme via the emitted --shiki-* custom properties. */
 .shiki,

@@ -17,10 +17,10 @@ function formatDate(iso: string) {
 }
 
 const PROOF = [
-  "Java · .NET · TypeScript · Python",
+  "Full-stack — React/Next.js, Java, .NET, Python",
+  "Fintech · on-chain analysis · digital identity",
   "Microservices · AWS · Docker · Jenkins",
-  "Cross-region production, MEA",
-  "L2/L3 on-call under SLA",
+  "L2/L3 production ops under SLA",
   "BSc CS, HK PolyU",
   "Sponsorship required — see /hiring",
 ];
@@ -32,20 +32,34 @@ export default function HomePage() {
   const posts = getPosts().slice(0, 3);
   const showWriting = posts.length >= 3; // §4.1 Block 4
 
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Ikram Sattar",
+    jobTitle: "Full-Stack Developer",
+    address: { "@type": "PostalAddress", addressLocality: "Hong Kong" },
+    url: "https://ikramsattar.dev",
+  };
+
   return (
     <div className="mx-auto max-w-[var(--container-content)] px-gutter">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
       <section className="reveal py-20 sm:py-28">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-          Backend systems engineer
+          Full-stack developer
         </p>
         <h1 className="mt-6 max-w-[18ch] text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
-          I build backend systems where failure is expensive.
+          I build production systems where failure is expensive.
         </h1>
         <p className="measure mt-6 text-lg leading-relaxed text-fg-dim">
-          Three years shipping production infrastructure — polyglot microservices
-          behind a national identity programme deployed across MEA, and on-chain
-          compliance tooling for stablecoin monitoring. Java, .NET, TypeScript,
-          AWS. Based in Hong Kong, relocating to Europe.
+          Three years shipping software end to end — from a public passport and
+          national-ID application portal to an on-chain analysis platform over 18
+          million smart contracts. Frontend and backend, across React/Next.js,
+          Java, .NET and Python, with a focus on fintech and digital identity.
+          Based in Hong Kong, open to relocation.
         </p>
 
         <div className="mt-10 flex flex-wrap gap-3">

@@ -71,6 +71,16 @@ export default async function CaseStudyPage({
         <h1 className="mt-4 max-w-[22ch] text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
           {meta.title}
         </h1>
+        {meta.liveUrl && /^https?:\/\//.test(meta.liveUrl) && (
+          <a
+            href={meta.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs text-accent hover:underline"
+          >
+            {meta.liveLabel} ↗
+          </a>
+        )}
         <div className="mt-5 flex flex-wrap gap-2">
           {meta.problemType.map((t) => (
             <span

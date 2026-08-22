@@ -1,14 +1,186 @@
 import type { Metadata } from "next";
-import { MilestonePlaceholder } from "@/components/milestone-placeholder";
+import { PROFILE, LOOKING_FOR, LOGISTICS } from "@/lib/profile";
+import { VISA_ROUTES, LAST_VERIFIED } from "@/lib/visa-routes";
+import { PrintButton } from "@/components/print-button";
 
-export const metadata: Metadata = { title: "Hiring" };
+export const metadata: Metadata = {
+  title: "Hiring",
+  description:
+    "For hiring managers: what I'm looking for, work authorisation explained plainly, sponsorship routes with official-source links, and logistics.",
+};
+
+function Row({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-1 py-4 sm:flex-row sm:gap-6">
+      <span className="shrink-0 font-mono text-xs uppercase tracking-wider text-fg-dim sm:w-44">
+        {label}
+      </span>
+      <div className="text-fg-dim">{children}</div>
+    </div>
+  );
+}
+
+function isTodo(v: string) {
+  return v.startsWith("TODO");
+}
 
 export default function HiringPage() {
   return (
-    <MilestonePlaceholder
-      title="For hiring managers"
-      milestone="M4 · pages"
-      note="Availability, work authorisation (Pakistani national, Hong Kong PR — sponsorship required), route/salary tables with dated official-source links, logistics, and a downloadable one-pager arrive in the pages milestone."
-    />
+    <div className="mx-auto max-w-[var(--container-content)] px-gutter py-16">
+      <header className="reveal flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+            For hiring managers
+          </p>
+          <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            Hiring me: the honest logistics
+          </h1>
+          <p className="measure mt-4 text-fg-dim">
+            I&apos;m a {PROFILE.nationality} national and {PROFILE.residency},
+            based in {PROFILE.location}. I need employer sponsorship to work in
+            the EU or UK. Here&apos;s exactly what that involves for you — no
+            surprises.
+          </p>
+        </div>
+        <PrintButton label="One-pager (PDF)" />
+      </header>
+
+      {/* What I'm looking for */}
+      <section className="mt-14">
+        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          What I&apos;m looking for
+        </h2>
+        <div className="mt-4 divide-y divide-border border-y border-border">
+          <Row label="Level">{LOOKING_FOR.level}</Row>
+          <Row label="Focus">{LOOKING_FOR.focus.join(" · ")}</Row>
+          <Row label="Locations">
+            {isTodo(LOOKING_FOR.locations) ? (
+              <TodoInline text="priority locations/cities" />
+            ) : (
+              LOOKING_FOR.locations
+            )}
+          </Row>
+          <Row label="Earliest start">
+            {isTodo(LOOKING_FOR.earliestStart) ? (
+              <TodoInline text="earliest start date" />
+            ) : (
+              LOOKING_FOR.earliestStart
+            )}
+          </Row>
+          <Row label="Remote → relocate">
+            {isTodo(LOOKING_FOR.remoteThenRelocate) ? (
+              <TodoInline text="is remote-then-relocate on the table?" />
+            ) : (
+              LOOKING_FOR.remoteThenRelocate
+            )}
+          </Row>
+        </div>
+      </section>
+
+      {/* Work authorisation table */}
+      <section className="mt-14">
+        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          Work authorisation, plainly
+        </h2>
+        <p className="measure mt-3 text-sm text-fg-dim">
+          The sponsorship routes that apply to me, with the salary floor, what
+          you&apos;d do, and rough timelines. As a non-EU/UK national I also need
+          an entry visa (e.g. an MVV for the Netherlands) — a standard step your
+          immigration team handles.
+        </p>
+
+        <div className="mt-6 overflow-x-auto">
+          <table className="w-full border-collapse text-left text-sm">
+            <thead>
+              <tr className="border-y border-border font-mono text-[0.65rem] uppercase tracking-wider text-fg-dim">
+                <th className="py-3 pr-4 font-medium">Route</th>
+                <th className="py-3 pr-4 font-medium">Salary floor (2026)</th>
+                <th className="py-3 pr-4 font-medium">What you do</th>
+                <th className="py-3 pr-4 font-medium">Timeline</th>
+                <th className="py-3 font-medium">Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              {VISA_ROUTES.map((r) => (
+                <tr key={r.country} className="border-b border-border align-top">
+                  <td className="py-4 pr-4">
+                    <div className="font-medium text-fg">
+                      {r.flag} {r.country}
+                    </div>
+                    <div className="text-xs text-fg-dim">{r.route}</div>
+                  </td>
+                  <td className="py-4 pr-4 text-fg-dim">{r.threshold}</td>
+                  <td className="py-4 pr-4 text-fg-dim">
+                    {r.employer}
+                    {r.note && (
+                      <span className="mt-1 block text-xs italic">{r.note}</span>
+                    )}
+                  </td>
+                  <td className="py-4 pr-4 text-fg-dim">{r.timeline}</td>
+                  <td className="py-4">
+                    <a
+                      href={r.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-xs text-accent hover:underline"
+                    >
+                      {r.sourceLabel} ↗
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mt-4 font-mono text-xs text-fg-dim">
+          Figures last verified {LAST_VERIFIED}. Thresholds are indexed and
+          change — confirm the current figure at the linked official source.
+        </p>
+      </section>
+
+      {/* Logistics */}
+      <section className="mt-14">
+        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          Logistics
+        </h2>
+        <div className="mt-4 divide-y divide-border border-y border-border">
+          <Row label="Notice period">
+            {isTodo(LOGISTICS.noticePeriod) ? (
+              <TodoInline text="current notice period" />
+            ) : (
+              LOGISTICS.noticePeriod
+            )}
+          </Row>
+          <Row label="Relocation">{LOGISTICS.relocation}</Row>
+          <Row label="Funding">
+            {isTodo(LOGISTICS.funding) ? (
+              <TodoInline text="self-funded or support needed?" />
+            ) : (
+              LOGISTICS.funding
+            )}
+          </Row>
+          <Row label="Interviews">{LOGISTICS.interviewOverlap}</Row>
+        </div>
+      </section>
+
+      <section className="mt-14 border-t border-border pt-6">
+        <a
+          href={`mailto:${PROFILE.email}?subject=Role%20enquiry`}
+          className="inline-flex h-11 items-center rounded-sm bg-accent px-5 font-mono text-sm text-white transition-opacity hover:opacity-90"
+        >
+          Email me →
+        </a>
+      </section>
+    </div>
+  );
+}
+
+function TodoInline({ text }: { text: string }) {
+  return (
+    <span className="font-mono text-xs text-fg-dim">
+      <span className="rounded-sm bg-bg-raised px-1 text-accent">TODO</span>{" "}
+      {text}
+    </span>
   );
 }
