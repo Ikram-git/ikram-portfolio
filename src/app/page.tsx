@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ScaleLedger } from "@/components/scale-ledger";
 import { getCaseStudies, getPosts } from "@/lib/content";
 
@@ -47,7 +48,8 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
-      <section className="reveal py-20 sm:py-28">
+      <section className="reveal grid gap-10 py-16 sm:py-24 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
+        <div>
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
           Full-stack developer
         </p>
@@ -76,6 +78,25 @@ export default function HomePage() {
             Hiring? Start here →
           </Link>
         </div>
+        </div>
+
+        {/* Portrait — framed, instrumentation caption. */}
+        <figure className="order-first mx-auto w-48 sm:w-60 lg:order-none lg:mx-0 lg:w-64">
+          <div className="border border-border p-1.5">
+            <Image
+              src="/ikram.jpg"
+              alt="Portrait of Ikram Sattar"
+              width={1000}
+              height={1250}
+              className="h-auto w-full grayscale-[0.1]"
+              priority
+            />
+          </div>
+          <figcaption className="mt-2 flex items-center justify-between font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fg-dim">
+            <span>Ikram Sattar · HKG</span>
+            <span className="text-accent">01</span>
+          </figcaption>
+        </figure>
       </section>
 
       {/* Proof strip — data face, absorbable without prose (§4.1 Block 2). */}
