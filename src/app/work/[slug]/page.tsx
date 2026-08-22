@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import fs from "node:fs";
+import path from "node:path";
 import { getCaseStudies, getCaseStudy } from "@/lib/content";
 import { Mdx } from "@/components/mdx";
 
@@ -76,9 +79,13 @@ export default async function CaseStudyPage({
             href={meta.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs text-accent hover:underline"
+            className="mt-5 inline-flex h-11 items-center gap-2 rounded-sm bg-accent px-5 font-mono text-sm text-white transition-opacity hover:opacity-90"
           >
-            {meta.liveLabel} ↗
+            <span aria-hidden="true">↗</span>
+            {meta.liveLabel}
+            <span className="text-white/70">
+              {meta.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+            </span>
           </a>
         )}
         <div className="mt-5 flex flex-wrap gap-2">
@@ -97,6 +104,20 @@ export default async function CaseStudyPage({
           )}
         </div>
       </header>
+
+      {meta.image &&
+        fs.existsSync(path.join(process.cwd(), "public", meta.image)) && (
+          <figure className="mt-8 overflow-hidden rounded-sm border border-border">
+            <Image
+              src={meta.image}
+              alt={`Screenshot of ${meta.title}`}
+              width={1280}
+              height={800}
+              className="h-auto w-full"
+              priority
+            />
+          </figure>
+        )}
 
       {meta.confidential && (
         <p className="mt-8 rounded-sm border border-border bg-bg-raised px-4 py-3 text-sm text-fg-dim">

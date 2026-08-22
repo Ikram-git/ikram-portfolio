@@ -1,18 +1,21 @@
 ---
-title: "Briva — a solo-built production SaaS with a pluggable STT layer"
+title: "Briva — a production SaaS for AI meeting notes"
 slug: "briva"
-org: "Independent"
-role: "Founder / Engineer"
-period: "TODO — e.g. 2024–present"
-summary: "TODO — one sentence: what Briva does and what the adapter pattern bought you."
+org: "Independent · Founder"
+role: "Solo Engineer"
+period: "2024–present"
+summary: "A live SaaS that records, transcribes and summarises professional meetings — with action-item extraction, calendar integration, and a pluggable STT layer — optimised for code-mixed Hong Kong meetings."
 problemType: ["product-ownership", "systems-design", "shipping-solo"]
 domain: "speech / SaaS"
-stack: ["Next.js", "Express", "Supabase", "Deepgram", "Google Cloud STT"]
+stack: ["Next.js", "Express", "TypeScript", "Supabase", "Tailwind", "Deepgram", "Google Cloud STT", "Claude"]
 metrics:
-  - label: "TODO — active users or paying customers"
+  - label: "Status"
+    value: "Live product"
+  - label: "STT providers behind one interface"
+    value: "2"
+  - label: "TODO — users / paying customers (if shareable)"
     value: "TODO"
-  - label: "TODO — revenue / MRR (if shareable)"
-    value: "TODO"
+image: "/work/briva.png"
 liveUrl: "https://meetbriva.com"
 liveLabel: "Live product"
 confidential: false
@@ -23,27 +26,36 @@ draft: false
 
 ## Context
 
-**TODO:** What Briva is, who pays for it, and that it's live in production.
+Briva ([meetbriva.com](https://meetbriva.com)) is a production SaaS I built and
+run solo. It records or ingests meeting audio, transcribes it — including
+multilingual, code-mixed Hong Kong conversations — and produces AI summaries,
+key decisions and action items, with export to PDF/email and Google Calendar
+integration.
 
 ## Constraint
 
-**TODO:** What made it hard to ship alone — the STT provider abstraction across
-Deepgram and Google Cloud STT, latency, cost, reliability.
+**TODO:** What made it hard to ship alone — reliability and cost of speech-to-text
+across providers, latency, and handling code-mixed (multilingual) audio where a
+single STT engine underperforms.
 
 ## What I built
 
-**TODO:** The adapter pattern across STT providers, the Next.js/Express/Supabase
-stack, and everything else you own end to end.
+- An **STT adapter pattern** across Deepgram and Google Cloud STT behind one
+  interface, so the transcription provider is swappable.
+- Summarisation and action-item extraction with Claude.
+- The full stack: Next.js, Express, TypeScript, Supabase and Tailwind, plus
+  calendar integration and PDF/email export.
 
 ## Decisions and trade-offs
 
-**TODO:** Two to four real forks — e.g. why the adapter pattern, why Supabase,
-build vs buy on any piece.
+**TODO:** Two to four real forks — why the adapter pattern (and what it bought
+you when a provider fell short), Supabase vs rolling your own, build vs buy on
+transcription. Alternative rejected + why.
 
 ## Outcome
 
-**TODO:** Users, revenue, or qualitative traction — whatever is real and
-shareable (fill the frontmatter metrics).
+**TODO:** Users, retention or revenue — whatever is real and shareable. Fill the
+frontmatter metrics.
 
 ## What I'd do differently
 

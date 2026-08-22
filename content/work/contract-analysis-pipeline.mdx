@@ -1,20 +1,21 @@
 ---
-title: "A full-stack platform for on-chain analysis over 18M smart contracts"
+title: "An LLM Solidity auditor over 18M smart contracts"
 slug: "contract-analysis-pipeline"
-org: "Independent project"
-role: "Full-Stack Developer"
-period: "TODO — e.g. 2025"
-summary: "TODO — one sentence: what the platform does end to end and what made 18M contracts hard."
+org: "HK PolyU"
+role: "Software Developer (part-time)"
+period: "2025–present"
+summary: "A retrieval-augmented Solidity smart-contract auditor that grounds vulnerability detection in documented exploit patterns, plus the on-chain data pipeline behind it and a stablecoin compliance frontend."
 problemType: ["full-stack", "data-engineering", "applied-ai"]
 domain: "fintech · on-chain analysis"
-stack: ["React", "TanStack", "TypeScript", "Python", "FastAPI", "solc / py-solc-x", "vector search", "PostgreSQL"]
+stack: ["React", "Vite", "TypeScript", "Tailwind", "Python", "FastAPI", "SQLModel", "PostgreSQL", "solc / py-solc-x", "vector DB"]
 metrics:
-  - label: "Smart contracts indexed for analysis"
+  - label: "Raw smart contracts processed"
     value: "18M"
-  - label: "TODO — dedup ratio / curated eval-set size"
+  - label: "Grounding for detection"
+    value: "RAG + exploit corpus"
+  - label: "TODO — eval-set size after dedup / detection metric"
     value: "TODO"
-  - label: "TODO — retrieval latency or throughput"
-    value: "TODO"
+image: "/work/contract-analysis-pipeline.png"
 liveUrl: "https://smartfortress.tech"
 liveLabel: "Live platform"
 confidential: false
@@ -25,33 +26,44 @@ draft: false
 
 ## Context
 
-**TODO:** What the platform does and who it's for. This is your own end-to-end
-build — you own both the React/TanStack frontend and the Python/FastAPI backend.
-Lead with the scale: 18 million smart contracts.
+An end-to-end, LLM-powered Solidity smart-contract auditor built at HK PolyU
+([smartfortress.tech](https://smartfortress.tech)). Rather than asking a bare LLM
+"is this contract safe?", it uses a Retrieval-Augmented Generation (RAG) pipeline
+and a vector database to ground vulnerability detection in documented exploit
+patterns. I own it front to back — the FastAPI/SQLModel backend on PostgreSQL and
+the React/Vite/TypeScript frontend.
 
 ## Constraint
 
-**TODO:** What made 18M hard — extraction cost, storage, deduplication, building
-an evaluation set you can trust, and why retrieval beats a bare LLM for on-chain
-analysis. Fintech framing: correctness matters, mistakes are expensive.
+Two hard problems. First, **scale**: compiling and extracting bytecode and ABIs
+from **18 million** raw smart contracts, then deduplicating identical bytecode
+into a curated evaluation set you can actually trust. Second, **trust**: a bare
+LLM hallucinates vulnerabilities; for audit you need answers anchored to real,
+citable exploit patterns — which is why retrieval beats generation alone here.
 
 ## What I built
 
-**TODO:** Full-stack scope. Backend: bytecode extraction with solc / py-solc-x,
-deduplication into a curated eval set, vector search, the FastAPI service.
-Frontend: the React/TanStack app users actually interact with. "I" throughout,
-since this is solo.
+- A Solidity processing pipeline (solc / py-solc-x) to compile and extract
+  bytecode and ABIs from 18M contracts, deduplicating identical bytecode into a
+  curated eval set.
+- The RAG + vector-database layer that grounds detection in documented exploits.
+- The FastAPI/SQLModel backend and the React/Vite/TypeScript frontend
+  (Tailwind, shadcn/ui), with Playwright E2E tests and Docker-based deployment.
+- Separately, a **React/Next.js frontend for a stablecoin compliance platform** —
+  real-time on-chain transaction monitoring, wallet risk scoring and AML alerts
+  for illicit-activity exposure.
 
 ## Decisions and trade-offs
 
-**TODO:** Two to four real forks — dedup strategy, chunking, which vector index,
-retrieval vs fine-tuning, and any frontend/architecture calls (TanStack, data
-fetching, state).
+**TODO:** Two to four real forks — dedup strategy on 18M contracts, chunking and
+which vector index, retrieval vs fine-tuning, and how you keep the eval set
+honest. Alternative rejected + why for each.
 
 ## Outcome
 
-**TODO:** Numbers where possible (fill the frontmatter metrics), qualitative
-where not.
+**TODO:** Add defensible numbers — eval-set size after dedup, detection
+precision/recall on a held-out set, or pipeline throughput. Fill the frontmatter
+metrics.
 
 ## What I'd do differently
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { CAPABILITIES, TIMELINE, EDUCATION, PROFILE } from "@/lib/profile";
 
 export const metadata: Metadata = {
@@ -10,13 +11,36 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-[var(--container-content)] px-gutter py-16">
-      <header className="reveal">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-          About
-        </p>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-          {PROFILE.name}
-        </h1>
+      <header className="reveal flex flex-col gap-8 sm:flex-row sm:items-end">
+        {/* Instrumentation-framed portrait: hairline border + mono caption. */}
+        <figure className="shrink-0">
+          <div className="relative w-40 border border-border p-1.5 sm:w-48">
+            <Image
+              src="/ikram.jpg"
+              alt="Portrait of Ikram Sattar"
+              width={1000}
+              height={1000}
+              className="h-auto w-full grayscale-[0.15]"
+              priority
+            />
+          </div>
+          <figcaption className="mt-2 flex items-center justify-between font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fg-dim">
+            <span>Ikram Sattar</span>
+            <span className="text-accent">HKG</span>
+          </figcaption>
+        </figure>
+
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+            About
+          </p>
+          <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            {PROFILE.name}
+          </h1>
+          <p className="mt-2 font-mono text-sm text-fg-dim">
+            {PROFILE.role} · {PROFILE.location}
+          </p>
+        </div>
       </header>
 
       {/* Narrative — four short paragraphs (§4.4). TODO prose. */}

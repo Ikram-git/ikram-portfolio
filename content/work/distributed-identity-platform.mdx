@@ -3,18 +3,19 @@ title: "A national passport & ID application portal, built front to back"
 slug: "distributed-identity-platform"
 org: "Toppan Security"
 role: "Full-Stack Developer"
-period: "2024–2026"
-summary: "TODO — one sentence: the public portal citizens use to apply for passports and national IDs, and what made it high-stakes."
+period: "2024–present"
+summary: "The public portal citizens use to apply for passports and national IDs — React/Next.js front end, C#/.NET and Java/Spring Boot services behind it, deployed across the MEA region under SLA."
 problemType: ["full-stack", "distributed-systems", "production-ops"]
 domain: "digital-identity"
-stack: ["Next.js", "TypeScript", "C#/.NET", "Java/Spring Boot", "PostgreSQL", "AWS", "Jenkins", "Docker"]
+stack: ["Next.js", "TypeScript", "C#/.NET", "Java/Spring Boot", "PostgreSQL", "Flutter/Dart", "AWS", "Jenkins", "Docker"]
 metrics:
-  - label: "TODO — applications processed / users served"
+  - label: "Region deployed across"
+    value: "MEA"
+  - label: "Production support tier under SLA"
+    value: "L2 / L3"
+  - label: "TODO — applications processed / p95 latency"
     value: "TODO"
-  - label: "TODO — throughput / p95 latency on the API layer"
-    value: "TODO"
-  - label: "TODO — deploy frequency before → after Jenkins pipelines"
-    value: "TODO"
+image: "/work/distributed-identity-platform.png"
 liveUrl: "https://immigration.gov.et"
 liveLabel: "Live portal"
 confidential: false
@@ -23,39 +24,50 @@ order: 1
 draft: false
 ---
 
-{/* Confirm with Toppan how much internal architecture you can describe. The
-portal itself is public (immigration.gov.et); keep specifics you're unsure about
-at architecture level. */}
-
 ## Context
 
-**TODO:** The public Ethiopian immigration portal (immigration.gov.et) citizens
-use to apply for passports and national IDs. You built it full-stack — the
-Next.js/TypeScript frontend users interact with and the C#/.NET + Java/Spring
-Boot services behind it. Say who uses it and at what scale.
+The public-facing portal citizens use to apply for passports and national IDs —
+the Ethiopian immigration portal ([immigration.gov.et](https://immigration.gov.et)).
+I worked on it end to end: the React/Next.js (TypeScript) front end applicants
+interact with, a C#/.NET backend, and Java/Spring Boot microservices on
+PostgreSQL exposing secure REST APIs for high-throughput inter-service data
+exchange.
 
 ## Constraint
 
-**TODO:** What made it high-stakes — a government identity programme where
-downtime and data errors are unacceptable, plus throughput, security-standards
-compliance, and SLA-bound support. This section separates a senior-reading
-engineer from a junior one.
+A government identity programme is unforgiving: applications must not be lost,
+data must be correct, and downtime is visible nationally. On top of correctness,
+the system had to sustain high-throughput inter-service traffic, meet
+security-standards compliance, and stay up under SLA-bound support across a
+cross-border rollout.
 
 ## What I built
 
-**TODO:** Front to back. The application portal UI, the services on PostgreSQL,
-the inter-service API layer, and the AWS CI/CD. "I" where it was you, "we" where
-it wasn't.
+- The application-portal front end in React/Next.js and TypeScript.
+- Backend services in C#/.NET and Java/Spring Boot on PostgreSQL, with secure
+  REST APIs for inter-service exchange.
+- A secure **Flutter/Dart mobile app for reading passport and ID documents**,
+  implementing ICAO authentication and encryption protocols (BAC, PACE/SAC) for
+  international identity-verification compliance.
+- AWS CI/CD pipelines with Jenkins and Docker — automated build, test and
+  deploy — to shorten release cycles and reduce production incidents.
+
+I led deployment across the MEA region alongside PMs, QA, infrastructure teams
+and clients, and provided L2/L3 production support and root-cause analysis under
+tight SLAs.
 
 ## Decisions and trade-offs
 
-**TODO:** Two to four real forks, each with the rejected alternative and why.
-This reads like a system-design interview answer.
+**TODO:** Two to four real forks, each with the rejected alternative and why —
+e.g. why .NET *and* Spring Boot rather than one runtime; how you drew service
+boundaries; on-device vs server-side document verification for the mobile app
+(BAC vs PACE/SAC). This section reads like a system-design interview answer.
 
 ## Outcome
 
-**TODO:** Numbers where possible (fill the frontmatter metrics), qualitative
-where not.
+**TODO:** Add the numbers you can defend — applications processed, throughput or
+p95 on the REST layer, release-cadence or incident change after the Jenkins
+pipelines. Fill the frontmatter metrics as you source them.
 
 ## What I'd do differently
 

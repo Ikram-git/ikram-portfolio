@@ -25,6 +25,8 @@ export type CaseStudyMeta = {
   domain: string;
   stack: string[];
   metrics: Metric[];
+  /** Optional screenshot path under /public, e.g. "/work/briva.png". */
+  image: string | null;
   /** Optional live/public URL (portal, product, repo). Rendered only when http(s). */
   liveUrl: string | null;
   /** Optional label for the live link, e.g. "Live portal", "Repository". */
@@ -116,6 +118,7 @@ function toCaseStudyMeta(
     domain: str(data.domain),
     stack: strArr(data.stack),
     metrics,
+    image: typeof data.image === "string" ? data.image : null,
     liveUrl: typeof data.liveUrl === "string" ? data.liveUrl : null,
     liveLabel: str(data.liveLabel, "Live"),
     confidential: bool(data.confidential),
