@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CAPABILITIES, TIMELINE, EDUCATION, PROFILE } from "@/lib/profile";
+import {
+  CAPABILITIES,
+  TIMELINE,
+  EDUCATION,
+  ACADEMIC_PROJECTS,
+  PROFILE,
+} from "@/lib/profile";
 
 export const metadata: Metadata = {
   title: "About",
@@ -67,6 +73,76 @@ export default function AboutPage() {
         </p>
       </div>
 
+      {/* Education — surfaced high, with coursework (§4.4). */}
+      <section className="mt-16">
+        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          Education
+        </h2>
+        <div className="mt-6 border-y border-border py-6">
+          <p className="text-lg font-medium text-fg">{EDUCATION.degree}</p>
+          <p className="mt-1 text-fg-dim">
+            {EDUCATION.institution} · {EDUCATION.period}
+          </p>
+          {EDUCATION.awards.length > 0 && (
+            <p className="mt-2 font-mono text-xs text-accent">
+              {EDUCATION.awards.join(" · ")}
+            </p>
+          )}
+          <div className="mt-5">
+            <p className="font-mono text-[0.65rem] uppercase tracking-wider text-fg-dim">
+              Relevant coursework
+            </p>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {EDUCATION.coursework.map((course) => (
+                <span
+                  key={course}
+                  className="rounded-sm bg-bg-raised px-2 py-0.5 font-mono text-xs text-fg-dim"
+                >
+                  {course}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Academic / coursework projects (§4.4). */}
+      <section className="mt-16">
+        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          Academic projects
+        </h2>
+        <ul className="mt-6 grid gap-px border border-border bg-border sm:grid-cols-2">
+          {ACADEMIC_PROJECTS.map((project) => (
+            <li key={project.title} className="bg-bg p-5">
+              <div className="flex items-baseline justify-between gap-3">
+                <h3 className="font-medium text-fg">{project.title}</h3>
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 font-mono text-[0.65rem] uppercase tracking-wider text-accent hover:underline"
+                  >
+                    {project.urlLabel} ↗
+                  </a>
+                )}
+              </div>
+              <p className="mt-2 text-sm text-fg-dim">{project.description}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {project.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="font-mono text-[0.6rem] uppercase tracking-wider text-fg-dim"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {/* Capability map — grouped by depth (§4.4). */}
       <section className="mt-16">
         <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
@@ -114,24 +190,6 @@ export default function AboutPage() {
             </li>
           ))}
         </ol>
-      </section>
-
-      {/* Education (§4.4). */}
-      <section className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-          Education
-        </h2>
-        <div className="mt-6 border-y border-border py-5">
-          <p className="font-medium text-fg">{EDUCATION.degree}</p>
-          <p className="text-sm text-fg-dim">
-            {EDUCATION.institution} · {EDUCATION.period}
-          </p>
-          {EDUCATION.awards.length > 0 && (
-            <p className="mt-1 font-mono text-xs text-fg-dim">
-              {EDUCATION.awards.join(" · ")}
-            </p>
-          )}
-        </div>
       </section>
     </div>
   );

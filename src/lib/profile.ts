@@ -105,8 +105,60 @@ export const EDUCATION = {
     "Cloud Computing",
     "Database Systems",
     "Software Engineering",
+    "Systems Programming",
+    "Data Structures",
+    "Accounting for Decision Making",
   ],
 } as const;
+
+/** Coursework / academic projects from the BSc (§4.4). */
+export const ACADEMIC_PROJECTS: {
+  title: string;
+  description: string;
+  skills: string[];
+  url: string | null;
+  urlLabel: string;
+}[] = [
+  {
+    title: "UTXO-based blockchain platform",
+    description:
+      "A blockchain system with block mining, transactions, a peer-to-peer network, and database storage for blocks and transactions.",
+    skills: ["Python", "Blockchain", "Cryptography"],
+    url: "https://github.com/Ikram-git/E-payment",
+    urlLabel: "GitHub",
+  },
+  {
+    title: "NFT trading platform",
+    description:
+      "A group web app to store, buy and sell NFTs, using encryption to keep trading secure.",
+    skills: ["React", "Node.js", "MongoDB", "RSA"],
+    url: "https://github.com/Ikram-git/NFT-website",
+    urlLabel: "GitHub",
+  },
+  {
+    title: "Spaceship Titanic (Kaggle)",
+    description:
+      "Predicting which passengers were transported to an alternate dimension. Final score 0.81.",
+    skills: ["Data mining", "DNN", "CatBoost"],
+    url: "https://drive.google.com/file/d/1AXR1CtYnK7I3c1pRegpU7TTcu5jA0esX/view",
+    urlLabel: "Reference",
+  },
+  {
+    title: "Don't Overfit II (Kaggle)",
+    description:
+      "20,000 test rows against only a handful of training samples — the challenge was not overfitting the tiny training set.",
+    skills: ["K-means", "Logistic regression"],
+    url: null,
+    urlLabel: "",
+  },
+  {
+    title: "Linux character device driver",
+    description: "A Linux character device driver built for a systems course.",
+    skills: ["C", "Linux / Unix"],
+    url: null,
+    urlLabel: "",
+  },
+];
 
 /** For hiring managers (§4.5). */
 export const LOOKING_FOR = {
