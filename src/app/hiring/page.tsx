@@ -36,10 +36,10 @@ export default function HiringPage() {
             Hiring me: the honest logistics
           </h1>
           <p className="measure mt-4 text-fg-dim">
-            I&apos;m a {PROFILE.nationality} national and {PROFILE.residency},
-            based in {PROFILE.location}. I need employer sponsorship to work in
-            the EU or UK. Here&apos;s exactly what that involves for you — no
-            surprises.
+            I&apos;m a {PROFILE.residency} and {PROFILE.nationality} national,
+            based in {PROFILE.location}. I need employer sponsorship to work
+            almost everywhere else. Here&apos;s exactly what that involves for
+            you — no surprises.
           </p>
         </div>
         <PrintButton label="One-pager (PDF)" />

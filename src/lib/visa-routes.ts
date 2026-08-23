@@ -68,4 +68,15 @@ export const VISA_ROUTES: VisaRoute[] = [
     sourceLabel: "gov.uk",
     sourceUrl: "https://www.gov.uk/skilled-worker-visa",
   },
+  {
+    flag: "🇵🇱",
+    country: "Poland",
+    route: "EU Blue Card",
+    threshold: "≈ 150% of Poland's average salary (confirm current PLN figure)",
+    employer: "Employer applies; work permit + Blue Card",
+    timeline: "~1–3 months",
+    sourceLabel: "gov.pl (UDSC)",
+    sourceUrl: "https://www.gov.pl/web/udsc-en",
+    note: "Warsaw and Kraków host large bank and tech delivery centres.",
+  },
 ];
