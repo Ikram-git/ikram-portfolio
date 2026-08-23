@@ -162,7 +162,7 @@ export const ACADEMIC_PROJECTS: {
 
 /** For hiring managers (§4.5). */
 export const LOOKING_FOR = {
-  level: "Full-stack roles — frontend, backend, or both. Open on level and team.",
+  level: "Software engineering — full-stack, backend or frontend. Open on level and team.",
   focus: ["Fintech & payments", "On-chain analysis", "Digital identity", "Platform"],
   earliestStart: "Around 2 weeks from a signed offer",
 } as const;
