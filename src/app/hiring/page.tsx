@@ -50,9 +50,18 @@ export default function HiringPage() {
         <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
           What I&apos;m looking for
         </h2>
+        <p className="measure mt-3 text-sm text-fg-dim">
+          A rough shape, not a checklist — if the role is interesting and you
+          sponsor, I&apos;d like to talk.
+        </p>
         <div className="mt-4 divide-y divide-border border-y border-border">
           <Row label="Level">{LOOKING_FOR.level}</Row>
-          <Row label="Focus">{LOOKING_FOR.focus.join(" · ")}</Row>
+          <Row label="Interests">
+            {LOOKING_FOR.focus.join(" · ")}
+            <span className="mt-1 block text-xs italic">
+              Open to adjacent teams too.
+            </span>
+          </Row>
           <Row label="Earliest start">{LOOKING_FOR.earliestStart}</Row>
         </div>
       </section>
@@ -113,9 +122,11 @@ export default function HiringPage() {
           </table>
         </div>
 
-        <p className="mt-4 font-mono text-xs text-fg-dim">
-          Figures last verified {LAST_VERIFIED}. Thresholds are indexed and
-          change — confirm the current figure at the linked official source.
+        <p className="measure mt-4 text-xs text-fg-dim">
+          These are each country&apos;s <em>visa salary floor</em> — the legal
+          minimum for the route, not my salary expectation. Figures last verified{" "}
+          {LAST_VERIFIED}; thresholds are indexed and change, so confirm the
+          current figure at the linked official source.
         </p>
       </section>
 

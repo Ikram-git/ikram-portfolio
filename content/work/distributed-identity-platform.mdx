@@ -11,10 +11,8 @@ stack: ["Next.js", "TypeScript", "C#/.NET", "Java/Spring Boot", "PostgreSQL", "F
 metrics:
   - label: "Region deployed across"
     value: "MEA"
-  - label: "Production support tier under SLA"
+  - label: "Production support under SLA"
     value: "L2 / L3"
-  - label: "TODO — applications processed / p95 latency"
-    value: "TODO"
 image: "/work/distributed-identity-platform.png"
 liveUrl: "https://immigration.gov.et"
 liveLabel: "Live portal"
@@ -58,17 +56,26 @@ tight SLAs.
 
 ## Decisions and trade-offs
 
-**TODO:** Two to four real forks, each with the rejected alternative and why —
-e.g. why .NET *and* Spring Boot rather than one runtime; how you drew service
-boundaries; on-device vs server-side document verification for the mobile app
-(BAC vs PACE/SAC). This section reads like a system-design interview answer.
+**Polyglot services over a single runtime.** The system runs a React/Next.js
+front end, C#/.NET services and Java/Spring Boot microservices rather than one
+stack. The cost is real — two backend runtimes, two build and dependency
+toolchains, two sets of operational knowledge — but it lets each service use the
+platform best suited to it and the team's existing expertise, integrated over
+well-defined REST contracts instead of a risky rewrite. The discipline that
+makes it hold together is keeping those inter-service contracts stable and
+versioned.
+
+**On-device document verification.** The passport/ID reader performs ICAO
+authentication — BAC, and PACE/SAC where the chip supports it — on the device,
+deriving keys from the MRZ and running secure messaging against the chip locally,
+rather than shipping document data to a server to verify. That keeps sensitive
+identity data off the network and lets verification work in constrained
+conditions, at the cost of implementing the cryptography correctly on the client
+where mistakes are harder to patch after release.
 
 ## Outcome
 
-**TODO:** Add the numbers you can defend — applications processed, throughput or
-p95 on the REST layer, release-cadence or incident change after the Jenkins
-pipelines. Fill the frontmatter metrics as you source them.
-
-## What I'd do differently
-
-**TODO:** One honest paragraph.
+Deployed to production across the MEA region and supported under SLA with L2/L3
+on-call and root-cause analysis. Moving build, test and deploy onto Jenkins/Docker
+pipelines took release off manual steps, shortening cycles and cutting the room
+for deployment error.

@@ -13,8 +13,6 @@ metrics:
     value: "Live product"
   - label: "STT providers behind one interface"
     value: "2"
-  - label: "TODO — users / paying customers (if shareable)"
-    value: "TODO"
 image: "/work/briva.png"
 liveUrl: "https://meetbriva.com"
 liveLabel: "Live product"
@@ -34,9 +32,12 @@ integration.
 
 ## Constraint
 
-**TODO:** What made it hard to ship alone — reliability and cost of speech-to-text
-across providers, latency, and handling code-mixed (multilingual) audio where a
-single STT engine underperforms.
+Speech-to-text is the product's foundation and its biggest risk. No single
+engine is best across accents, price and reliability — and Hong Kong meetings are
+often code-mixed (English and Cantonese in the same sentence), which trips up
+engines tuned for one language. Depending on a single provider means their
+outages, pricing changes and language gaps become mine. As a solo build, all of
+that has to work without a team to lean on.
 
 ## What I built
 
@@ -48,15 +49,20 @@ single STT engine underperforms.
 
 ## Decisions and trade-offs
 
-**TODO:** Two to four real forks — why the adapter pattern (and what it bought
-you when a provider fell short), Supabase vs rolling your own, build vs buy on
-transcription. Alternative rejected + why.
+**An adapter over locking to one STT provider.** Putting Deepgram and Google
+Cloud STT behind a single interface costs an abstraction layer and a normalised
+transcript format up front, but it means I can route by language or cost, and
+swap or fall back when a provider underperforms on code-mixed audio — without
+touching the rest of the app. Committing to one engine would have been simpler to
+build and far more fragile to run.
+
+**Supabase over rolling my own backend.** Leaning on Supabase for auth, database
+and storage traded some control for the ability to ship and iterate solo — the
+right call for a one-person product where time is the scarcest resource.
 
 ## Outcome
 
-**TODO:** Users, retention or revenue — whatever is real and shareable. Fill the
-frontmatter metrics.
-
-## What I'd do differently
-
-**TODO:** One honest paragraph.
+A live product at [meetbriva.com](https://meetbriva.com): it records or ingests a
+meeting, transcribes code-mixed audio, and returns summaries, decisions and
+action items with calendar and export integration — built and operated end to end
+by one person.

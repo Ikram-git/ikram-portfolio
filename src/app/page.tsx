@@ -80,21 +80,20 @@ export default function HomePage() {
         </div>
         </div>
 
-        {/* Portrait — framed, instrumentation caption. */}
-        <figure className="order-first mx-auto w-48 sm:w-60 lg:order-none lg:mx-0 lg:w-64">
-          <div className="border border-border p-1.5">
+        {/* Portrait — round, hairline border + soft accent ring. */}
+        <figure className="order-first lg:order-none">
+          <div className="mx-auto w-44 rounded-full border border-border p-2 ring-1 ring-accent/20 sm:w-56 lg:mx-0 lg:w-64">
             <Image
               src="/ikram.jpg"
               alt="Portrait of Ikram Sattar"
               width={1000}
-              height={1250}
-              className="h-auto w-full grayscale-[0.1]"
+              height={1000}
+              className="aspect-square h-auto w-full rounded-full object-cover grayscale-[0.1]"
               priority
             />
           </div>
-          <figcaption className="mt-2 flex items-center justify-between font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fg-dim">
-            <span>Ikram Sattar · HKG</span>
-            <span className="text-accent">01</span>
+          <figcaption className="mt-3 text-center font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fg-dim">
+            Ikram Sattar · HKG
           </figcaption>
         </figure>
       </section>

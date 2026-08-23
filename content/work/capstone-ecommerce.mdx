@@ -31,9 +31,11 @@ React front end, and the Web3.js integration between them, deployed on Firebase.
 
 ## Constraint
 
-**TODO:** What made it hard — writing a payment contract you'd trust with real
-value, handling the async, failure-prone nature of on-chain transactions in the
-UI, gas, and reconciling wallet state with the storefront. Keep it concrete.
+Putting payment on-chain is harder than it looks from the storefront: a
+blockchain transaction is slow, asynchronous, and can fail or be dropped after
+the user has clicked "buy". The app has to reconcile that uncertain settlement
+with order state, handle wallet connection and rejected or pending transactions
+gracefully, and keep the smart contract simple enough to trust with real value.
 
 ## What I built
 
@@ -44,11 +46,10 @@ UI, gas, and reconciling wallet state with the storefront. Keep it concrete.
 
 ## Decisions and trade-offs
 
-**TODO:** Two to four real forks — on-chain vs off-chain settlement, how you
-handled transaction confirmation UX, contract design choices. Alternative
-rejected + why.
-
-## What I'd do differently
-
-**TODO:** One honest paragraph — this is a student project; showing how your
-judgement has moved since reads as growth.
+**On-chain settlement vs a payment gateway.** Settling directly on-chain removes
+the intermediary and makes each payment independently verifiable, but it pushes
+latency, gas and failure handling into the checkout UI and ties the flow to
+wallet UX. For a final-year project whose goal was to demonstrate an end-to-end
+crypto-payment flow, that on-chain settlement was the point rather than a cost to
+engineer away — and building it surfaced exactly where the hard edges of
+consumer crypto payments live.

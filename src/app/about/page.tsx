@@ -14,20 +14,16 @@ export default function AboutPage() {
       <header className="reveal flex flex-col gap-8 sm:flex-row sm:items-end">
         {/* Instrumentation-framed portrait: hairline border + mono caption. */}
         <figure className="shrink-0">
-          <div className="relative w-40 border border-border p-1.5 sm:w-48">
+          <div className="w-40 rounded-full border border-border p-2 ring-1 ring-accent/20 sm:w-48">
             <Image
               src="/ikram.jpg"
               alt="Portrait of Ikram Sattar"
               width={1000}
-              height={1250}
-              className="h-auto w-full grayscale-[0.15]"
+              height={1000}
+              className="aspect-square h-auto w-full rounded-full object-cover grayscale-[0.12]"
               priority
             />
           </div>
-          <figcaption className="mt-2 flex items-center justify-between font-mono text-[0.6rem] uppercase tracking-[0.15em] text-fg-dim">
-            <span>Ikram Sattar</span>
-            <span className="text-accent">HKG</span>
-          </figcaption>
         </figure>
 
         <div>
@@ -43,32 +39,31 @@ export default function AboutPage() {
         </div>
       </header>
 
-      {/* Narrative — four short paragraphs (§4.4). TODO prose. */}
+      {/* Narrative — four short paragraphs (§4.4), grounded in the CV. */}
       <div className="measure mt-8 space-y-4 text-fg-dim">
         <p>
-          <span className="rounded-sm bg-bg-raised px-1 font-mono text-xs text-accent">
-            TODO
-          </span>{" "}
-          Where you&apos;re from and how you got into software — Hong Kong, PolyU.
+          I&apos;m a full-stack developer based in Hong Kong. I studied Computer
+          Science at HK PolyU, where a virtual-asset project at PolyHack 2022 won
+          the Best Quantek Capital Research Award and got me hooked on building
+          things where the numbers actually matter.
         </p>
         <p>
-          <span className="rounded-sm bg-bg-raised px-1 font-mono text-xs text-accent">
-            TODO
-          </span>{" "}
-          The path — FDM, then Toppan; what you built and owned.
+          After a summer at FWD Insurance and FDM Group&apos;s engineering
+          programme, I joined Toppan Security, where I&apos;ve shipped a public
+          passport and national-ID application portal front to back — a React/Next.js
+          front end over C#/.NET and Java/Spring Boot services — and deployed it
+          across the MEA region while carrying L2/L3 support under SLA.
         </p>
         <p>
-          <span className="rounded-sm bg-bg-raised px-1 font-mono text-xs text-accent">
-            TODO
-          </span>{" "}
-          Why high-stakes production systems — fintech, on-chain analysis,
-          identity — became the thing you care about.
+          Alongside that I build on the fintech and on-chain side: an LLM Solidity
+          auditor over 18 million smart contracts and a stablecoin compliance
+          frontend at HK PolyU, and Briva, a live meeting-notes SaaS I run solo. The
+          common thread is systems where a mistake is expensive — identity,
+          payments, compliance — and the discipline that demands.
         </p>
         <p>
-          <span className="rounded-sm bg-bg-raised px-1 font-mono text-xs text-accent">
-            TODO
-          </span>{" "}
-          Where you&apos;re going next.
+          I&apos;m now looking for a full-stack role where that experience is an
+          asset, and I&apos;m open to relocation.
         </p>
       </div>
 

@@ -13,7 +13,6 @@ export const PROFILE = {
   timezone: "HKT (UTC+8)",
   nationality: "Pakistani",
   residency: "Hong Kong permanent resident",
-  // CV lists sattarikram81@gmail.com; confirm which inbox you want public.
   email: "sattarikram81@gmail.com",
   github: "https://github.com/Ikram-git",
   linkedin: "https://www.linkedin.com/in/ikram-sattar",
@@ -111,15 +110,15 @@ export const EDUCATION = {
 
 /** For hiring managers (§4.5). */
 export const LOOKING_FOR = {
-  level: "Mid-level full-stack (frontend + backend)",
+  level: "Full-stack roles — frontend, backend, or both. Open on level and team.",
   focus: ["Fintech & payments", "On-chain analysis", "Digital identity", "Platform"],
-  earliestStart: "2 weeks from a signed offer",
+  earliestStart: "Around 2 weeks from a signed offer",
 } as const;
 
 export const LOGISTICS = {
   noticePeriod: "2 weeks",
   relocation: "Open to relocation; ready to relocate for the right role.",
-  funding: "TODO — self-funded relocation, or support needed?",
+  funding: "Flexible — happy to discuss relocation support if it's on the table.",
   interviewOverlap:
-    "Comfortable interviewing across the HKT/European overlap (early-evening HKT).",
+    "Flexible on interview times across time zones — early-evening HKT overlaps the European working day.",
 } as const;

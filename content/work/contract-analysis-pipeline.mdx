@@ -11,10 +11,8 @@ stack: ["React", "Vite", "TypeScript", "Tailwind", "Python", "FastAPI", "SQLMode
 metrics:
   - label: "Raw smart contracts processed"
     value: "18M"
-  - label: "Grounding for detection"
+  - label: "Detection grounded in"
     value: "RAG + exploit corpus"
-  - label: "TODO — eval-set size after dedup / detection metric"
-    value: "TODO"
 image: "/work/contract-analysis-pipeline.png"
 liveUrl: "https://smartfortress.tech"
 liveLabel: "Live platform"
@@ -55,16 +53,23 @@ citable exploit patterns — which is why retrieval beats generation alone here.
 
 ## Decisions and trade-offs
 
-**TODO:** Two to four real forks — dedup strategy on 18M contracts, chunking and
-which vector index, retrieval vs fine-tuning, and how you keep the eval set
-honest. Alternative rejected + why for each.
+**Retrieval over fine-tuning.** Grounding detection in a vector store of
+documented exploit patterns — rather than fine-tuning a model on them — means the
+corpus can be updated the moment a new exploit class appears, with no retraining,
+and every finding can point back to the pattern that triggered it. That
+citability is the whole point for audit: a fine-tuned model that simply asserts a
+verdict is far harder to trust or debug.
+
+**Deduplicating on bytecode.** Across 18M contracts the same compiled bytecode
+recurs constantly — proxies, forks, re-deploys. Deduplicating on bytecode rather
+than source or address collapses that redundancy into a curated evaluation set
+that's cheaper to run and stops near-identical contracts from dominating results.
+The cost is a compile-and-extract pass (solc / py-solc-x) across the whole corpus
+up front.
 
 ## Outcome
 
-**TODO:** Add defensible numbers — eval-set size after dedup, detection
-precision/recall on a held-out set, or pipeline throughput. Fill the frontmatter
-metrics.
-
-## What I'd do differently
-
-**TODO:** One honest paragraph.
+The pipeline turns 18M raw contracts into a curated, deduplicated evaluation set,
+and the auditor grounds its findings in real exploit patterns rather than a
+model's unsupported judgement. Live at
+[smartfortress.tech](https://smartfortress.tech).
