@@ -37,11 +37,20 @@ export default function CvPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
 
-      <div className="mb-8 flex items-center justify-between print:hidden">
+      <div className="mb-8 flex items-center justify-between gap-4 print:hidden">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
           Curriculum vitae
         </p>
-        <PrintButton label="Download PDF" />
+        <div className="flex items-center gap-3">
+          <a
+            href="/Ikram_Sattar_Resume.pdf"
+            download
+            className="inline-flex h-9 items-center rounded-sm border border-border px-4 font-mono text-xs text-fg-dim transition-colors hover:border-accent hover:text-accent"
+          >
+            Download PDF ↓
+          </a>
+          <PrintButton label="Print" />
+        </div>
       </div>
 
       <article>
