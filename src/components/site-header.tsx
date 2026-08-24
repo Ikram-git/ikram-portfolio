@@ -3,7 +3,6 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const NAV = [
   { href: "/work", label: "Work" },
-  { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
   { href: "/hiring", label: "Hiring" },
   { href: "/cv", label: "CV" },

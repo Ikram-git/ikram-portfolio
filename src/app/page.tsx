@@ -1,21 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ScaleLedger } from "@/components/scale-ledger";
-import { getCaseStudies, getPosts } from "@/lib/content";
+import { getCaseStudies } from "@/lib/content";
 
 /**
  * Home (§4.1). Hero register per spec; proof-strip facts are the non-fabricated
- * attributes from §4.1 Block 2. Selected work reads the featured case studies;
- * the writing block only renders with ≥3 published posts (§4.1 Block 4).
+ * attributes from §4.1 Block 2. Selected work reads the featured case studies.
  */
-
-function formatDate(iso: string) {
-  if (!iso) return "";
-  const d = new Date(iso);
-  return Number.isNaN(d.getTime())
-    ? iso
-    : d.toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" });
-}
 
 const PROOF = [
   "Full-stack — React/Next.js, Java, .NET, Python",
@@ -30,8 +21,6 @@ export default function HomePage() {
   const featured = getCaseStudies()
     .filter((cs) => cs.featured)
     .slice(0, 3);
-  const posts = getPosts().slice(0, 3);
-  const showWriting = posts.length >= 3; // §4.1 Block 4
 
   const personJsonLd = {
     "@context": "https://schema.org",
@@ -166,45 +155,6 @@ export default function HomePage() {
         </ol>
       </section>
 
-      {/* Block 4 — Writing. Only renders with ≥3 published posts (§4.1). */}
-      {showWriting && (
-        <section aria-labelledby="writing-heading" className="py-12">
-          <div className="flex items-baseline justify-between">
-            <h2
-              id="writing-heading"
-              className="font-mono text-xs uppercase tracking-[0.2em] text-accent"
-            >
-              Writing
-            </h2>
-            <Link
-              href="/writing"
-              className="font-mono text-xs text-fg-dim hover:text-accent"
-            >
-              All writing →
-            </Link>
-          </div>
-          <ol className="mt-6 divide-y divide-border border-y border-border">
-            {posts.map((post) => (
-              <li key={post.slug}>
-                <Link
-                  href={`/writing/${post.slug}`}
-                  className="group block py-6 transition-colors hover:bg-bg-raised"
-                >
-                  <time
-                    dateTime={post.publishedAt}
-                    className="font-mono text-xs text-fg-dim"
-                  >
-                    {formatDate(post.publishedAt)}
-                  </time>
-                  <h3 className="mt-1 text-lg font-semibold tracking-tight text-fg group-hover:text-accent">
-                    {post.title}
-                  </h3>
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
     </div>
   );
 }

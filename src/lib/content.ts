@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import readingTime from "reading-time";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const isProd = process.env.NODE_ENV === "production";
@@ -38,25 +37,13 @@ export type CaseStudyMeta = {
   draft: boolean;
 };
 
-export type PostMeta = {
-  title: string;
-  description: string;
-  publishedAt: string;
-  updatedAt: string | null;
-  tags: string[];
-  canonical: string | null;
-  draft: boolean;
-  slug: string;
-  readingTimeMinutes: number;
-};
-
 export type Loaded<TMeta> = { meta: TMeta; body: string };
 
 /* ------------------------------------------------------------------ *
  * Low-level file access
  * ------------------------------------------------------------------ */
 
-function readCollection(collection: "work" | "writing"): {
+function readCollection(collection: "work"): {
   slug: string;
   raw: string;
   data: Record<string, unknown>;
@@ -142,43 +129,3 @@ export function getCaseStudy(slug: string): Loaded<CaseStudyMeta> | null {
   return { meta: toCaseStudyMeta(slug, match.data), body: match.content };
 }
 
-/* ------------------------------------------------------------------ *
- * Posts (/writing)
- * ------------------------------------------------------------------ */
-
-function toPostMeta(
-  slug: string,
-  data: Record<string, unknown>,
-  content: string,
-): PostMeta {
-  const updatedAt = typeof data.updatedAt === "string" ? data.updatedAt : null;
-  const canonical = typeof data.canonical === "string" ? data.canonical : null;
-  return {
-    title: str(data.title, slug),
-    description: str(data.description),
-    publishedAt: str(data.publishedAt),
-    updatedAt,
-    tags: strArr(data.tags),
-    canonical,
-    draft: bool(data.draft),
-    slug,
-    readingTimeMinutes: Math.max(1, Math.round(readingTime(content).minutes)),
-  };
-}
-
-export function getPosts(opts?: { includeDrafts?: boolean }): PostMeta[] {
-  const includeDrafts = opts?.includeDrafts ?? !isProd;
-  return readCollection("writing")
-    .map(({ slug, data, content }) => toPostMeta(slug, data, content))
-    .filter((p) => includeDrafts || !p.draft)
-    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
-}
-
-export function getPost(slug: string): Loaded<PostMeta> | null {
-  const match = readCollection("writing").find((f) => f.slug === slug);
-  if (!match) return null;
-  return {
-    meta: toPostMeta(slug, match.data, match.content),
-    body: match.content,
-  };
-}
