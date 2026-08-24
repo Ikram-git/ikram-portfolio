@@ -14,7 +14,7 @@ const PROOF = [
   "Microservices · AWS · Docker · Jenkins",
   "L2/L3 production ops under SLA",
   "BSc CS, HK PolyU",
-  "Sponsorship required — see /hiring",
+  "HK permanent resident — sponsorship only outside HK, see /hiring",
 ];
 
 export default function HomePage() {

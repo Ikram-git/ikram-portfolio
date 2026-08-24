@@ -61,8 +61,10 @@ export default function AboutPage() {
         </p>
         <p>
           Most of my work sits in fintech, on-chain analysis and digital identity —
-          domains where correctness matters. I&apos;m looking for a software
-          engineering role where that&apos;s useful, and I&apos;m open to relocation.
+          domains where correctness matters. In Hong Kong I&apos;m looking for
+          opportunities in finance and fintech, where that background is most
+          useful; outside Hong Kong I&apos;m open to general software engineering
+          roles, and I&apos;m open to relocation.
         </p>
       </div>
 

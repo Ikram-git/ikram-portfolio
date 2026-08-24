@@ -37,9 +37,12 @@ export default function HiringPage() {
           </h1>
           <p className="measure mt-4 text-fg-dim">
             I&apos;m a {PROFILE.residency} and {PROFILE.nationality} national,
-            based in {PROFILE.location}. I need employer sponsorship to work
-            almost everywhere else. Here&apos;s exactly what that involves for
-            you — no surprises.
+            based in {PROFILE.location}. In Hong Kong I&apos;m looking for
+            opportunities in finance and fintech — as a permanent resident I
+            need no sponsorship there. Outside Hong Kong I&apos;m open to
+            general software development roles, which means employer
+            sponsorship almost everywhere. Here&apos;s exactly what that
+            involves for you — no surprises.
           </p>
         </div>
         <PrintButton label="One-pager (PDF)" />
@@ -56,6 +59,13 @@ export default function HiringPage() {
         </p>
         <div className="mt-4 divide-y divide-border border-y border-border">
           <Row label="Level">{LOOKING_FOR.level}</Row>
+          <Row label="Where">
+            <ul className="space-y-1">
+              {LOOKING_FOR.where.map((w) => (
+                <li key={w}>{w}</li>
+              ))}
+            </ul>
+          </Row>
           <Row label="Interests">
             {LOOKING_FOR.focus.join(" · ")}
             <span className="mt-1 block text-xs italic">
@@ -72,10 +82,14 @@ export default function HiringPage() {
           Work authorisation, plainly
         </h2>
         <p className="measure mt-3 text-sm text-fg-dim">
-          The sponsorship routes that apply to me, with the salary floor, what
-          you&apos;d do, and rough timelines. As a non-EU/UK national I also need
-          an entry visa (e.g. an MVV for the Netherlands) — a standard step your
-          immigration team handles.
+          <strong className="font-medium text-fg">In Hong Kong: nothing to
+          do.</strong>{" "}
+          I&apos;m a permanent resident with full right to work — no visa, no
+          sponsorship, no lead time. The table below is for roles outside Hong
+          Kong: the sponsorship routes that apply to me, with the salary floor,
+          what you&apos;d do, and rough timelines. As a non-EU/UK national I
+          also need an entry visa (e.g. an MVV for the Netherlands) — a
+          standard step your immigration team handles.
         </p>
 
         <div className="mt-6 overflow-x-auto">

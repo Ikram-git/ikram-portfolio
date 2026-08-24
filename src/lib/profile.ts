@@ -163,7 +163,16 @@ export const ACADEMIC_PROJECTS: {
 /** For hiring managers (§4.5). */
 export const LOOKING_FOR = {
   level: "Software engineering — full-stack, backend or frontend. Open on level and team.",
-  focus: ["Fintech & payments", "On-chain analysis", "Digital identity", "Platform"],
+  where: [
+    "Hong Kong — finance & fintech. Permanent resident: no sponsorship, no visa step.",
+    "Outside Hong Kong — general software development roles, with employer sponsorship (routes below).",
+  ],
+  focus: [
+    "Finance & fintech",
+    "On-chain analysis",
+    "Digital identity",
+    "General software development (outside HK)",
+  ],
   earliestStart: "Around 2 weeks from a signed offer",
 } as const;
 
