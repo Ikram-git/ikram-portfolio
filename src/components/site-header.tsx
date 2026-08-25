@@ -4,12 +4,13 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { PROFILE } from "@/lib/profile";
 
 // Anchors into the one-page home — the standalone routes still exist for deep
-// links, but primary navigation scrolls the single page.
+// links, but primary navigation scrolls the single page. CV serves the actual
+// PDF (single source of truth), not the generated /cv page.
 const NAV = [
   { href: "/#work", label: "Work" },
   { href: "/#about", label: "About" },
   { href: "/#hiring", label: "Hiring" },
-  { href: "/cv", label: "CV" },
+  { href: "/Ikram_Sattar_Resume.pdf", label: "CV" },
 ];
 
 export function SiteHeader() {
@@ -25,16 +26,29 @@ export function SiteHeader() {
 
         <nav aria-label="Primary" className="flex items-center gap-1">
           <ul className="hidden items-center gap-1 sm:flex">
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="rounded-full px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider text-fg-dim transition-colors hover:bg-bg-raised hover:text-fg"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {NAV.map((item) => {
+              const isFile = item.href.endsWith(".pdf");
+              const cls =
+                "rounded-full px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider text-fg-dim transition-colors hover:bg-bg-raised hover:text-fg";
+              return (
+                <li key={item.href}>
+                  {isFile ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cls}
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link href={item.href} className={cls}>
+                      {item.label}
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           <div className="ml-2 hidden items-center gap-1 border-l border-border pl-3 sm:flex">
