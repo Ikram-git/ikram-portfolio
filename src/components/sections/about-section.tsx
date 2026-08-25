@@ -1,9 +1,31 @@
 import {
   ArrowRight,
+  Atom,
+  Blocks,
+  Braces,
+  Brain,
+  BrainCircuit,
+  Cloud,
+  Container,
+  Database,
+  DatabaseZap,
+  Flame,
   FlaskConical,
   GraduationCap,
+  Hash,
+  Hexagon,
   History,
+  Leaf,
+  Link as LinkIcon,
+  Network,
+  ShieldCheck,
+  Smartphone,
+  Terminal,
+  Triangle,
+  Workflow,
   Wrench,
+  Zap,
+  type LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +36,31 @@ import {
   ACADEMIC_PROJECTS,
   PROFILE,
 } from "@/lib/profile";
+
+/** Capability `icon` key → lucide glyph (see CAPABILITIES in lib/profile). */
+const CAPABILITY_ICONS: Record<string, LucideIcon> = {
+  atom: Atom,
+  blocks: Blocks,
+  braces: Braces,
+  brain: Brain,
+  "brain-circuit": BrainCircuit,
+  cloud: Cloud,
+  container: Container,
+  database: Database,
+  "database-zap": DatabaseZap,
+  flame: Flame,
+  hash: Hash,
+  hexagon: Hexagon,
+  leaf: Leaf,
+  link: LinkIcon,
+  network: Network,
+  "shield-check": ShieldCheck,
+  smartphone: Smartphone,
+  terminal: Terminal,
+  triangle: Triangle,
+  workflow: Workflow,
+  zap: Zap,
+};
 
 /** About — shared by the /about route and the one-page home (§4.4). */
 export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }) {
@@ -100,11 +147,20 @@ export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }
                 </span>
               </div>
               <ul className="mt-4 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <li key={item} className="chip">
-                    {item}
-                  </li>
-                ))}
+                {group.items.map((item) => {
+                  const Icon = CAPABILITY_ICONS[item.icon];
+                  return (
+                    <li key={item.label} className="chip">
+                      {Icon && (
+                        <Icon
+                          className="h-3.5 w-3.5 text-accent"
+                          aria-hidden="true"
+                        />
+                      )}
+                      {item.label}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

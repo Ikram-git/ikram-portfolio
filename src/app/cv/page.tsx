@@ -129,7 +129,9 @@ export default function CvPage() {
                 <dt className="shrink-0 font-mono text-xs uppercase tracking-wider text-fg-dim sm:w-24">
                   {group.tier}
                 </dt>
-                <dd className="text-sm text-fg-dim">{group.items.join(" · ")}</dd>
+                <dd className="text-sm text-fg-dim">
+                  {group.items.map((item) => item.label).join(" · ")}
+                </dd>
               </div>
             ))}
           </dl>

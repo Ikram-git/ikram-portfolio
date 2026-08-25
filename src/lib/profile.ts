@@ -19,45 +19,53 @@ export const PROFILE = {
   scheduling: "", // TODO — Cal.com link (optional)
 } as const;
 
-/** Capability map grouped by DEPTH, not category (§4.4). Draft tiers below,
- *  grounded in the CV — re-tier honestly: "Deep" = would defend in an
- *  interview; "Working" = used in production; "Familiar" = touched it. */
-export const CAPABILITIES: { tier: string; note: string; items: string[] }[] = [
+/** Capability map grouped by DEPTH, not category (§4.4). Grounded in the CV.
+ *  `icon` keys map to lucide icons in the about section's ICON table. */
+export type CapabilityItem = { label: string; icon: string };
+export const CAPABILITIES: {
+  tier: string;
+  note: string;
+  items: CapabilityItem[];
+}[] = [
   {
-    tier: "Deep",
-    note: "Would defend in an interview",
+    tier: "Advanced",
+    note: "Primary stack — daily drivers",
     items: [
-      "TypeScript",
-      "React / Next.js",
-      "Java / Spring Boot",
-      "Python / FastAPI",
-      "PostgreSQL",
+      { label: "TypeScript", icon: "braces" },
+      { label: "React / Next.js", icon: "atom" },
+      { label: "Java / Spring Boot", icon: "leaf" },
+      { label: "Python / FastAPI", icon: "zap" },
+      { label: "PostgreSQL", icon: "database" },
     ],
   },
   {
-    tier: "Working",
-    note: "Used in production",
+    tier: "Intermediate",
+    note: "Production experience",
     items: [
-      "C# / .NET",
-      "Node / Express",
-      "Flutter / Dart",
-      "REST / microservices",
-      "AWS",
-      "Docker",
-      "Jenkins",
-      "Supabase",
-      "Solidity",
+      { label: "C# / .NET", icon: "hash" },
+      { label: "Node.js / Express", icon: "hexagon" },
+      { label: "Smart contracts / blockchain", icon: "blocks" },
+      { label: "Flutter / Dart", icon: "smartphone" },
+      { label: "MySQL", icon: "database" },
+      { label: "Linux / shell", icon: "terminal" },
+      { label: "REST / microservices", icon: "network" },
+      { label: "AWS", icon: "cloud" },
+      { label: "Docker", icon: "container" },
+      { label: "Jenkins", icon: "workflow" },
+      { label: "Supabase", icon: "database-zap" },
+      { label: "Vercel", icon: "triangle" },
     ],
   },
   {
     tier: "Familiar",
-    note: "Touched it",
+    note: "Hands-on exposure",
     items: [
-      "RAG / vector databases",
-      "BAC · PACE/SAC · ICAO 9303",
-      "React Native",
-      "Machine learning",
-      "Web3.js",
+      { label: "RAG / vector databases", icon: "brain" },
+      { label: "BAC · PACE/SAC · ICAO 9303", icon: "shield-check" },
+      { label: "React Native", icon: "smartphone" },
+      { label: "Machine learning", icon: "brain-circuit" },
+      { label: "Web3.js", icon: "link" },
+      { label: "Firebase", icon: "flame" },
     ],
   },
 ];
