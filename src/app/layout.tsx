@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { geistSans, geistMono } from "@/lib/fonts";
+import { RevealObserver } from "@/components/reveal-observer";
 import { ThemeScript } from "@/components/theme-script";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b1020", // dark is the default theme
+  themeColor: "#0d0b08", // dark is the default theme
 };
 
 export default function RootLayout({
@@ -46,6 +47,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <RevealObserver />
         <div aria-hidden="true" className="page-ambient" />
         <div className="flex min-h-dvh flex-col">
           <SiteHeader />

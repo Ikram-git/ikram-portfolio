@@ -15,7 +15,7 @@ export function WorkSection() {
 
   return (
     <section id="work" className="scroll-mt-24 py-12">
-      <header className="reveal">
+      <header data-reveal>
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
           Selected work
         </p>

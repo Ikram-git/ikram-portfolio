@@ -115,7 +115,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-white shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110 disabled:pointer-events-none disabled:opacity-60"
+          className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-bg shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110 disabled:pointer-events-none disabled:opacity-60"
         >
           {status === "sending" ? (
             <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />

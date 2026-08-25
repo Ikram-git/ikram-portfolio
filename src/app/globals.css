@@ -5,14 +5,14 @@
  * Raw palette lives here; semantic roles are theme-switchable below.
  * ------------------------------------------------------------------ */
 :root {
-  /* raw palette */
-  --ink: #0b1020; /* deep instrument navy — page ground */
-  --ink-raised: #141a2e; /* raised surfaces, cards */
-  --paper: #e8e6df; /* document stock — primary text on dark */
-  --paper-dim: #8a8fa0; /* secondary text, labels */
-  --uv: #7b5cff; /* violet — links, focus, active data */
+  /* raw palette — "terminal amber": warm charcoal ground, phosphor-amber accent */
+  --ink: #0d0b08; /* warm charcoal — page ground */
+  --ink-raised: #1a1611; /* raised surfaces, cards */
+  --paper: #ece7dd; /* warm document stock — primary text on dark */
+  --paper-dim: #a39c8d; /* secondary text, labels */
+  --uv: #f5a623; /* phosphor amber — links, focus, active data */
   --verify: #35d0a5; /* valid state, success, check digits */
-  --rule: #232a42; /* hairlines, field delimiters */
+  --rule: #2b251c; /* hairlines, field delimiters */
 
   /* semantic roles — DARK is the default theme */
   --bg: var(--ink);
@@ -26,14 +26,14 @@
   color-scheme: dark;
 }
 
-/* LIGHT theme — invert ground/text, keep the violet accent (§6.2) */
+/* LIGHT theme — invert ground/text, deepen the amber for contrast (§6.2) */
 :root[data-theme="light"] {
   --bg: var(--paper);
-  --bg-raised: #ffffff;
+  --bg-raised: #fffdf8;
   --fg: var(--ink);
-  --fg-dim: #55596b; /* AA-compliant dim on light ground */
-  --border: #d3d0c7;
-  --accent: #5b3fe0; /* slightly darker violet clears 4.5:1 on light */
+  --fg-dim: #675f52; /* AA-compliant dim on light ground */
+  --border: #d6cfc0;
+  --accent: #9a5b00; /* burnt amber clears 4.5:1 on light ground */
   --ok: #0f9d7a; /* darker verify-green for contrast on light ground */
 
   color-scheme: light;
@@ -114,12 +114,29 @@ body {
   }
 }
 
-/* Gradient display text — violet → verify-green, the two brand hues. */
+/* Gradient display text — amber → verify-green, the two brand hues. Shimmers
+ * slowly when motion is allowed. */
 .text-gradient {
-  background: linear-gradient(100deg, var(--accent), var(--ok));
+  background: linear-gradient(
+    100deg,
+    var(--accent),
+    var(--ok) 50%,
+    var(--accent)
+  );
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .text-gradient {
+    animation: gradient-shimmer 7s linear infinite;
+  }
+  @keyframes gradient-shimmer {
+    to {
+      background-position: 200% 0;
+    }
+  }
 }
 
 /* Card surface — raised, rounded, and lit on hover. */
@@ -210,7 +227,7 @@ body {
     --fg: #000000;
     --fg-dim: #333333;
     --border: #cccccc;
-    --accent: #4a2fd0;
+    --accent: #9a5b00;
     color-scheme: light;
   }
   body {
@@ -242,6 +259,16 @@ body {
   .reveal {
     animation: reveal-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+  /* Staggered hero entrance. */
+  .reveal-1 {
+    animation: reveal-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+  }
+  .reveal-2 {
+    animation: reveal-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+  }
+  .reveal-3 {
+    animation: reveal-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+  }
   @keyframes reveal-in {
     from {
       opacity: 0;
@@ -251,5 +278,22 @@ body {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Scroll-triggered reveals. Elements opt in with data-reveal; the observer
+   * (components/reveal-observer.tsx) marks the root once JS is live, so
+   * content is never hidden without JS, then adds .in-view as each element
+   * enters the viewport. Stagger with --reveal-delay. */
+  html.reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  html.reveal-ready [data-reveal].in-view {
+    opacity: 1;
+    transform: none;
   }
 }

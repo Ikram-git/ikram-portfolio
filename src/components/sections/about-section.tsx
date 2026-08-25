@@ -70,7 +70,7 @@ const CAPABILITY_ICONS: Record<string, LucideIcon> = {
 export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }) {
   return (
     <section id="about" className="scroll-mt-24 py-12">
-      <header className="reveal flex flex-col gap-8 sm:flex-row sm:items-end">
+      <header data-reveal className="flex flex-col gap-8 sm:flex-row sm:items-end">
         {/* Instrumentation-framed portrait: hairline border + accent ring. */}
         {showPortrait && (
           <figure className="shrink-0">
@@ -100,7 +100,7 @@ export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }
       </header>
 
       {/* Narrative — one line; the chips and capability grid carry the detail. */}
-      <div className="measure mt-8 space-y-4 text-fg-dim">
+      <div className="measure mt-8 space-y-4 text-fg-dim" data-reveal>
         <p>
           Full-stack developer who owns features end to end, in domains where
           correctness matters.
@@ -133,7 +133,7 @@ export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }
       <div className="mt-8">
         <Link
           href="/work"
-          className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-white shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110"
+          className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-bg shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110"
         >
           See the work
           <ArrowRight
@@ -210,7 +210,7 @@ export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }
           <GraduationCap className="h-4 w-4" aria-hidden="true" />
           Education
         </h2>
-        <div className="card mt-6 p-6">
+        <div className="card mt-6 p-6" data-reveal>
           <p className="text-lg font-medium text-fg">{EDUCATION.degree}</p>
           <p className="mt-1 text-fg-dim">
             {EDUCATION.institution} · {EDUCATION.period}

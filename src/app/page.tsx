@@ -41,28 +41,28 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
-      <section className="reveal grid gap-10 py-16 sm:py-24 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
+      <section className="grid gap-10 py-16 sm:py-24 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-16">
         <div>
-          <span className="inline-flex items-center gap-2.5 rounded-full border border-ok/30 bg-ok/10 px-3.5 py-1.5 font-mono text-xs text-ok">
+          <span className="reveal inline-flex items-center gap-2.5 rounded-full border border-ok/30 bg-ok/10 px-3.5 py-1.5 font-mono text-xs text-ok">
             <span className="relative flex h-2 w-2">
               <span className="pulse-dot relative inline-flex h-2 w-2 rounded-full bg-ok" />
             </span>
             Open to opportunities
           </span>
 
-          <h1 className="mt-6 max-w-[18ch] text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
+          <h1 className="reveal-1 mt-6 max-w-[18ch] text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
             I build production systems where{" "}
             <span className="text-gradient">failure is expensive</span>.
           </h1>
-          <p className="measure mt-6 text-lg leading-relaxed text-fg-dim">
+          <p className="reveal-2 measure mt-6 text-lg leading-relaxed text-fg-dim">
             Three years shipping software end to end — from a national passport
             portal to on-chain analysis over 18M smart contracts.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-3">
+          <div className="reveal-3 mt-10 flex flex-wrap items-center gap-3">
             <Link
               href="/#work"
-              className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-white shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110"
+              className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-bg shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110"
             >
               See the work
               <ArrowRight
@@ -109,7 +109,7 @@ export default function HomePage() {
         </div>
 
         {/* Portrait — round, soft accent glow. */}
-        <figure className="order-first lg:order-none">
+        <figure className="reveal-2 order-first lg:order-none">
           <div className="relative mx-auto w-44 sm:w-56 lg:mx-0 lg:w-64">
             <div
               aria-hidden="true"
@@ -133,7 +133,7 @@ export default function HomePage() {
       </section>
 
       {/* Proof strip — data face, absorbable without prose (§4.1 Block 2). */}
-      <section aria-label="At a glance">
+      <section aria-label="At a glance" data-reveal>
         <ul className="flex flex-wrap gap-2.5">
           {PROOF.map(({ Icon, text }) => (
             <li key={text} className="chip">
@@ -145,7 +145,7 @@ export default function HomePage() {
       </section>
 
       {/* Signature element — scale-ledger strip, between hero and work (§5). */}
-      <div className="my-12">
+      <div className="my-12" data-reveal>
         <ScaleLedger />
       </div>
 

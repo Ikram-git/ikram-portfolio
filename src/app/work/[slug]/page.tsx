@@ -79,7 +79,7 @@ export default async function CaseStudyPage({
             href={meta.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex h-11 items-center gap-2 rounded-sm bg-accent px-5 font-mono text-sm text-white transition-opacity hover:opacity-90"
+            className="mt-5 inline-flex h-11 items-center gap-2 rounded-sm bg-accent px-5 font-mono text-sm text-bg transition-opacity hover:opacity-90"
           >
             <span aria-hidden="true">↗</span>
             {meta.liveLabel}

@@ -30,7 +30,7 @@ function isTodo(v: string) {
 export function HiringSection() {
   return (
     <section id="hiring" className="scroll-mt-24 py-12">
-      <header className="reveal flex flex-wrap items-start justify-between gap-4">
+      <header data-reveal className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
             For hiring managers
@@ -54,7 +54,7 @@ export function HiringSection() {
         <p className="measure mt-3 text-sm text-fg-dim">
           A rough shape, not a checklist.
         </p>
-        <div className="card mt-4 divide-y divide-border px-5">
+        <div className="card mt-4 divide-y divide-border px-5" data-reveal>
           <Row label="Level">{LOOKING_FOR.level}</Row>
           <Row label="Where">
             <ul className="space-y-1">
@@ -79,7 +79,7 @@ export function HiringSection() {
           <ShieldCheck className="h-4 w-4" aria-hidden="true" />
           Work authorisation, plainly
         </h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+        <div className="mt-4 grid gap-4 sm:grid-cols-2" data-reveal>
           <div className="card p-5">
             <div className="flex items-center gap-2 font-mono text-sm font-medium text-fg">
               <CircleCheck className="h-4 w-4 text-ok" aria-hidden="true" />
@@ -102,7 +102,7 @@ export function HiringSection() {
           </div>
         </div>
 
-        <div className="card mt-6 overflow-x-auto px-5 py-1">
+        <div className="card mt-6 overflow-x-auto px-5 py-1" data-reveal>
           <table className="w-full border-collapse text-left text-sm">
             <thead>
               <tr className="border-y border-border font-mono text-[0.65rem] uppercase tracking-wider text-fg-dim">
@@ -160,7 +160,7 @@ export function HiringSection() {
           <ClipboardList className="h-4 w-4" aria-hidden="true" />
           Logistics
         </h2>
-        <div className="card mt-4 divide-y divide-border px-5">
+        <div className="card mt-4 divide-y divide-border px-5" data-reveal>
           <Row label="Notice period">
             {isTodo(LOGISTICS.noticePeriod) ? (
               <TodoInline text="current notice period" />
@@ -189,7 +189,7 @@ export function HiringSection() {
         <p className="measure mt-3 text-sm text-fg-dim">
           Role, project, or question — drop it here and it lands in my inbox.
         </p>
-        <div className="mt-6 max-w-2xl">
+        <div className="mt-6 max-w-2xl" data-reveal>
           <ContactForm />
         </div>
       </section>
