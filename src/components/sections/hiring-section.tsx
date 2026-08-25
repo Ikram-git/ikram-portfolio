@@ -1,6 +1,7 @@
-import { ArrowRight, ClipboardList, Mail, ShieldCheck, Target } from "lucide-react";
+import { ClipboardList, Mail, ShieldCheck, Target } from "lucide-react";
 import { PROFILE, LOOKING_FOR, LOGISTICS } from "@/lib/profile";
 import { VISA_ROUTES, LAST_VERIFIED } from "@/lib/visa-routes";
+import { ContactForm } from "@/components/contact-form";
 import { PrintButton } from "@/components/print-button";
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
@@ -167,18 +168,18 @@ export function HiringSection() {
         </div>
       </section>
 
-      <section className="mt-14 border-t border-border pt-6">
-        <a
-          href={`mailto:${PROFILE.email}?subject=Role%20enquiry`}
-          className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-white shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110"
-        >
+      {/* Contact — message box wired straight to my inbox. */}
+      <section id="contact" className="mt-14 scroll-mt-24 border-t border-border pt-10">
+        <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
           <Mail className="h-4 w-4" aria-hidden="true" />
-          Email me
-          <ArrowRight
-            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-            aria-hidden="true"
-          />
-        </a>
+          Get in touch
+        </h2>
+        <p className="measure mt-3 text-sm text-fg-dim">
+          Role, project, or question — drop it here and it lands in my inbox.
+        </p>
+        <div className="mt-6 max-w-2xl">
+          <ContactForm />
+        </div>
       </section>
     </section>
   );
