@@ -46,6 +46,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <div aria-hidden="true" className="page-ambient" />
         <div className="flex min-h-dvh flex-col">
           <SiteHeader />
           <main id="main" className="flex-1">

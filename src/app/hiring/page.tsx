@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ArrowRight, ClipboardList, Mail, ShieldCheck, Target } from "lucide-react";
 import { PROFILE, LOOKING_FOR, LOGISTICS } from "@/lib/profile";
 import { VISA_ROUTES, LAST_VERIFIED } from "@/lib/visa-routes";
 import { PrintButton } from "@/components/print-button";
@@ -50,14 +51,15 @@ export default function HiringPage() {
 
       {/* What I'm looking for */}
       <section className="mt-14">
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+        <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          <Target className="h-4 w-4" aria-hidden="true" />
           What I&apos;m looking for
         </h2>
         <p className="measure mt-3 text-sm text-fg-dim">
           A rough shape, not a checklist — if the role is interesting and you
           sponsor, I&apos;d like to talk.
         </p>
-        <div className="mt-4 divide-y divide-border border-y border-border">
+        <div className="card mt-4 divide-y divide-border px-5">
           <Row label="Level">{LOOKING_FOR.level}</Row>
           <Row label="Where">
             <ul className="space-y-1">
@@ -78,7 +80,8 @@ export default function HiringPage() {
 
       {/* Work authorisation table */}
       <section className="mt-14">
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+        <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          <ShieldCheck className="h-4 w-4" aria-hidden="true" />
           Work authorisation, plainly
         </h2>
         <p className="measure mt-3 text-sm text-fg-dim">
@@ -92,7 +95,7 @@ export default function HiringPage() {
           standard step your immigration team handles.
         </p>
 
-        <div className="mt-6 overflow-x-auto">
+        <div className="card mt-6 overflow-x-auto px-5 py-1">
           <table className="w-full border-collapse text-left text-sm">
             <thead>
               <tr className="border-y border-border font-mono text-[0.65rem] uppercase tracking-wider text-fg-dim">
@@ -146,10 +149,11 @@ export default function HiringPage() {
 
       {/* Logistics */}
       <section className="mt-14">
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+        <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          <ClipboardList className="h-4 w-4" aria-hidden="true" />
           Logistics
         </h2>
-        <div className="mt-4 divide-y divide-border border-y border-border">
+        <div className="card mt-4 divide-y divide-border px-5">
           <Row label="Notice period">
             {isTodo(LOGISTICS.noticePeriod) ? (
               <TodoInline text="current notice period" />
@@ -172,9 +176,14 @@ export default function HiringPage() {
       <section className="mt-14 border-t border-border pt-6">
         <a
           href={`mailto:${PROFILE.email}?subject=Role%20enquiry`}
-          className="inline-flex h-11 items-center rounded-sm bg-accent px-5 font-mono text-sm text-white transition-opacity hover:opacity-90"
+          className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-white shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110"
         >
-          Email me →
+          <Mail className="h-4 w-4" aria-hidden="true" />
+          Email me
+          <ArrowRight
+            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+            aria-hidden="true"
+          />
         </a>
       </section>
     </div>

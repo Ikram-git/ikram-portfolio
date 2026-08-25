@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FileDown } from "lucide-react";
 import {
   PROFILE,
   CAPABILITIES,
@@ -45,9 +46,10 @@ export default function CvPage() {
           <a
             href="/Ikram_Sattar_Resume.pdf"
             download
-            className="inline-flex h-9 items-center rounded-sm border border-border px-4 font-mono text-xs text-fg-dim transition-colors hover:border-accent hover:text-accent"
+            className="inline-flex h-10 items-center gap-2 rounded-full bg-accent px-4 font-mono text-xs text-white shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110"
           >
-            Download PDF ↓
+            <FileDown className="h-3.5 w-3.5" aria-hidden="true" />
+            Download PDF
           </a>
           <PrintButton label="Print" />
         </div>

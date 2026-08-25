@@ -77,6 +77,112 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Ambient depth — a soft accent glow behind the top of the page and a faint
+ * dot grid, so surfaces read as layers instead of flat ink. Pure decoration:
+ * fixed, non-interactive, and invisible to print. */
+.page-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      600px 380px at 50% -10%,
+      color-mix(in srgb, var(--accent) 16%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      480px 320px at 90% 10%,
+      color-mix(in srgb, var(--ok) 7%, transparent),
+      transparent 70%
+    );
+}
+.page-ambient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--fg) 7%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to bottom, black, transparent 60%);
+}
+@media print {
+  .page-ambient {
+    display: none;
+  }
+}
+
+/* Gradient display text — violet → verify-green, the two brand hues. */
+.text-gradient {
+  background: linear-gradient(100deg, var(--accent), var(--ok));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card surface — raised, rounded, and lit on hover. */
+.card {
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-raised) 72%, transparent);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.18);
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow:
+    0 10px 30px -12px color-mix(in srgb, var(--accent) 35%, transparent),
+    0 2px 8px rgb(0 0 0 / 0.2);
+}
+
+/* Pill chip — tags, proof facts, capability items. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-raised) 65%, transparent);
+  padding: 0.3rem 0.75rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--fg-dim);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.chip:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  color: var(--fg);
+}
+
+/* Pulsing availability dot. */
+@media (prefers-reduced-motion: no-preference) {
+  .pulse-dot::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: var(--ok);
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    70%,
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+}
+
 /* Visible focus — never outline:none (§7.3). */
 :focus-visible {
   outline: 2px solid var(--accent);

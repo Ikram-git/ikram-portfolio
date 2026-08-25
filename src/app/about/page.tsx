@@ -1,4 +1,11 @@
 import type { Metadata } from "next";
+import {
+  ArrowRight,
+  FlaskConical,
+  GraduationCap,
+  History,
+  Wrench,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -72,29 +79,34 @@ export default function AboutPage() {
       <div className="mt-8">
         <Link
           href="/work"
-          className="inline-flex h-11 items-center rounded-sm bg-accent px-5 font-mono text-sm text-white transition-opacity hover:opacity-90"
+          className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-white shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110"
         >
-          See the work →
+          See the work
+          <ArrowRight
+            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+            aria-hidden="true"
+          />
         </Link>
       </div>
 
       {/* Capability map — grouped by depth (§4.4). */}
       <section className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+        <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          <Wrench className="h-4 w-4" aria-hidden="true" />
           Capabilities
         </h2>
-        <div className="mt-6 grid gap-px border border-border bg-border md:grid-cols-3">
+        <div className="mt-6 grid gap-5 md:grid-cols-3">
           {CAPABILITIES.map((group) => (
-            <div key={group.tier} className="bg-bg p-5">
+            <div key={group.tier} className="card p-5">
               <div className="flex items-baseline justify-between font-mono">
                 <span className="text-sm font-medium text-fg">{group.tier}</span>
                 <span className="text-[0.65rem] uppercase tracking-wider text-fg-dim">
                   {group.note}
                 </span>
               </div>
-              <ul className="mt-4 space-y-1.5">
+              <ul className="mt-4 flex flex-wrap gap-2">
                 {group.items.map((item) => (
-                  <li key={item} className="text-sm text-fg-dim">
+                  <li key={item} className="chip">
                     {item}
                   </li>
                 ))}
@@ -106,22 +118,24 @@ export default function AboutPage() {
 
       {/* Timeline (§4.4). */}
       <section className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+        <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          <History className="h-4 w-4" aria-hidden="true" />
           Timeline
         </h2>
-        <ol className="mt-6 divide-y divide-border border-y border-border">
+        <ol className="relative mt-6 space-y-8 border-l border-border pl-6">
           {TIMELINE.map((entry) => (
-            <li
-              key={entry.title}
-              className="flex flex-col gap-1 py-5 sm:flex-row sm:gap-6"
-            >
-              <span className="shrink-0 font-mono text-xs text-fg-dim sm:w-28">
+            <li key={entry.title} className="relative">
+              <span
+                aria-hidden="true"
+                className="absolute -left-[1.85rem] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-bg"
+              />
+              <span className="font-mono text-xs text-accent">
                 {entry.period}
               </span>
-              <div>
-                <p className="font-medium text-fg">{entry.title}</p>
-                <p className="text-sm text-fg-dim">{entry.detail}</p>
-              </div>
+              <p className="mt-1 font-medium text-fg">{entry.title}</p>
+              <p className="mt-0.5 text-sm leading-relaxed text-fg-dim">
+                {entry.detail}
+              </p>
             </li>
           ))}
         </ol>
@@ -129,10 +143,11 @@ export default function AboutPage() {
 
       {/* Education (with coursework) — kept toward the bottom. */}
       <section className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+        <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          <GraduationCap className="h-4 w-4" aria-hidden="true" />
           Education
         </h2>
-        <div className="mt-6 border-y border-border py-6">
+        <div className="card mt-6 p-6">
           <p className="text-lg font-medium text-fg">{EDUCATION.degree}</p>
           <p className="mt-1 text-fg-dim">
             {EDUCATION.institution} · {EDUCATION.period}
@@ -148,10 +163,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-2 flex flex-wrap gap-2">
               {EDUCATION.coursework.map((course) => (
-                <span
-                  key={course}
-                  className="rounded-sm bg-bg-raised px-2 py-0.5 font-mono text-xs text-fg-dim"
-                >
+                <span key={course} className="chip">
                   {course}
                 </span>
               ))}
@@ -162,12 +174,13 @@ export default function AboutPage() {
 
       {/* Academic / coursework projects (§4.4). */}
       <section className="mt-16">
-        <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+        <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+          <FlaskConical className="h-4 w-4" aria-hidden="true" />
           Academic projects
         </h2>
-        <ul className="mt-6 grid gap-px border border-border bg-border sm:grid-cols-2">
+        <ul className="mt-6 grid gap-5 sm:grid-cols-2">
           {ACADEMIC_PROJECTS.map((project) => (
-            <li key={project.title} className="bg-bg p-5">
+            <li key={project.title} className="card card-hover p-5">
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="font-medium text-fg">{project.title}</h3>
                 {project.url && (
