@@ -1,0 +1,47 @@
+---
+title: "An NFT trading platform with encrypted transactions"
+slug: "nft-trading-platform"
+org: "Group project · HK PolyU"
+role: "Full-stack — trading flows"
+period: "2022"
+summary: "A group-built web platform to store, buy and sell NFTs — React front end over a Node.js API and MongoDB, with RSA encryption securing the trading flow."
+problemType: ["full-stack", "web3", "cryptography"]
+domain: "blockchain"
+stack: ["React", "Node.js", "MongoDB", "RSA encryption"]
+metrics:
+  - label: "Architecture"
+    value: "React client · Node API"
+  - label: "Trade security"
+    value: "RSA-encrypted"
+image: null
+liveUrl: "https://github.com/Ikram-git/NFT-website"
+liveLabel: "Repository"
+confidential: false
+featured: false
+order: 6
+draft: false
+---
+
+## Context
+
+A group web application for storing, buying and selling NFTs, built as a
+client/API split — a React front end talking to a Node.js backend with MongoDB
+persistence. My focus was the trading flows and keeping them secure end to
+end.
+
+## What I built
+
+- **Marketplace flows** — listing, browsing, and buying NFTs, with ownership
+  recorded against user accounts in MongoDB.
+- **Encrypted trading** — RSA encryption protecting the transaction exchange,
+  so trades can't be tampered with or replayed in transit.
+- **Client/API architecture** — a clean separation between the React client
+  and the Node API, which let the group work in parallel without stepping on
+  each other.
+
+## Why it matters
+
+An early pass at the same questions my later production work keeps asking:
+who owns what, how do you prove it, and how do you make the transfer
+tamper-proof — the difference is that here we had to answer them with our own
+encryption layer rather than a chain's.

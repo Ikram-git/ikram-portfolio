@@ -1,0 +1,55 @@
+---
+title: "A UTXO blockchain from scratch — mining, transactions, P2P consensus"
+slug: "utxo-blockchain"
+org: "Academic project · HK PolyU"
+role: "Build — core protocol"
+period: "2022"
+summary: "A working UTXO-based blockchain in Python: block mining, signed transactions, a peer-to-peer node network converging by longest-chain rule, and database-backed storage."
+problemType: ["distributed-systems", "cryptography", "backend"]
+domain: "blockchain"
+stack: ["Python", "Cryptography", "P2P networking", "SQL"]
+metrics:
+  - label: "Consensus"
+    value: "Longest-chain rule"
+  - label: "Transaction model"
+    value: "UTXO"
+image: null
+liveUrl: "https://github.com/Ikram-git/E-payment"
+liveLabel: "Repository"
+confidential: false
+featured: false
+order: 5
+draft: false
+---
+
+## Context
+
+A blockchain e-payment system built from first principles in Python — no
+frameworks, no forks of existing chains. The goal was to understand what a
+cryptocurrency actually is by implementing each layer: accounts and keys,
+transactions, blocks, mining, and the network that keeps independent nodes
+agreeing on one history.
+
+## What I built
+
+- **Accounts and keys** — account creation generates a public/private key pair
+  and a derived address, persisted to the database.
+- **UTXO transactions** — transfers spend unspent outputs, signed with the
+  sender's private key and verified before entering a block.
+- **Mining** — nodes mine pending transactions into blocks; the chain and its
+  state live in database storage rather than in memory, so nodes restart
+  cleanly.
+- **Peer-to-peer network** — multiple nodes run on different ports, exchange
+  blocks, and converge by the longest-chain rule: blocks mined on one node
+  become visible to the others, and a node that falls behind adopts the longer
+  history.
+- **CLI console** — a small operator console (`account create`,
+  `miner start`, `tx list`, `blockchain list`, `node add/run`) drives the whole
+  system, which keeps every protocol step observable.
+
+## Why it matters
+
+Most blockchain work builds *on* a chain. Building the chain itself — the
+signature verification, the UTXO bookkeeping, the fork resolution — is what
+made later production work on smart-contract analysis and on-chain platforms
+feel legible: the primitives underneath were never a black box.
