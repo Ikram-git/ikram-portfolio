@@ -1,26 +1,20 @@
 import {
-  ArrowRight,
   Atom,
   Blocks,
   Braces,
   Brain,
   BrainCircuit,
-  Briefcase,
   Cloud,
   Container,
   Database,
   DatabaseZap,
   Flame,
-  FlaskConical,
   GraduationCap,
   Hash,
   Hexagon,
   History,
-  Landmark,
   Leaf,
-  LifeBuoy,
   Link as LinkIcon,
-  MapPin,
   Network,
   ShieldCheck,
   Smartphone,
@@ -32,14 +26,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import {
-  CAPABILITIES,
-  TIMELINE,
-  EDUCATION,
-  ACADEMIC_PROJECTS,
-  PROFILE,
-} from "@/lib/profile";
+import { CAPABILITIES, TIMELINE, EDUCATION, PROFILE } from "@/lib/profile";
 
 /** Capability `icon` key → lucide glyph (see CAPABILITIES in lib/profile). */
 const CAPABILITY_ICONS: Record<string, LucideIcon> = {
@@ -66,13 +53,16 @@ const CAPABILITY_ICONS: Record<string, LucideIcon> = {
   zap: Zap,
 };
 
-/** About — shared by the /about route and the one-page home (§4.4). */
+/**
+ * About — capabilities, timeline, education. Identity details (name, blurb,
+ * facts) live in the home hero / proof strip; the portrait header renders only
+ * on the standalone /about route.
+ */
 export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }) {
   return (
     <section id="about" className="scroll-mt-24 py-12">
-      <header data-reveal className="flex flex-col gap-8 sm:flex-row sm:items-end">
-        {/* Instrumentation-framed portrait: hairline border + accent ring. */}
-        {showPortrait && (
+      {showPortrait && (
+        <header data-reveal className="flex flex-col gap-8 sm:flex-row sm:items-end">
           <figure className="shrink-0">
             <div className="w-40 rounded-full border border-border p-2 ring-1 ring-accent/20 sm:w-48">
               <Image
@@ -84,74 +74,34 @@ export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }
               />
             </div>
           </figure>
-        )}
-
-        <div>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-            About
-          </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-            {PROFILE.name}
-          </h2>
-          <p className="mt-2 font-mono text-sm text-fg-dim">
-            {PROFILE.role} · {PROFILE.location}
-          </p>
-        </div>
-      </header>
-
-      {/* Narrative — one line; the chips and capability grid carry the detail. */}
-      <div className="measure mt-8 space-y-4 text-fg-dim" data-reveal>
-        <p>
-          Full-stack developer who owns features end to end, in domains where
-          correctness matters.
-        </p>
-        <ul className="flex flex-wrap gap-2.5">
-          <li className="chip">
-            <MapPin className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-            Hong Kong · open to relocation
-          </li>
-          <li className="chip">
-            <Briefcase className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-            3 yrs production experience
-          </li>
-          <li className="chip">
-            <Landmark className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-            Fintech · on-chain · identity
-          </li>
-          <li className="chip">
-            <GraduationCap className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-            BSc CS, HK PolyU
-          </li>
-          <li className="chip">
-            <LifeBuoy className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-            L2/L3 ops under SLA
-          </li>
-        </ul>
-      </div>
-
-      {/* Work is the main thing — link straight to it. */}
-      <div className="mt-8">
-        <Link
-          href="/work"
-          className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-bg shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110"
-        >
-          See the work
-          <ArrowRight
-            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-            aria-hidden="true"
-          />
-        </Link>
-      </div>
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+              About
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              {PROFILE.name}
+            </h2>
+            <p className="mt-2 font-mono text-sm text-fg-dim">
+              {PROFILE.role} · {PROFILE.location}
+            </p>
+          </div>
+        </header>
+      )}
 
       {/* Capability map — grouped by depth (§4.4). */}
-      <section className="mt-16">
+      <section className={showPortrait ? "mt-16" : undefined}>
         <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
           <Wrench className="h-4 w-4" aria-hidden="true" />
           Capabilities
         </h2>
         <div className="mt-6 grid gap-5 md:grid-cols-2">
-          {CAPABILITIES.map((group) => (
-            <div key={group.tier} className="card p-5">
+          {CAPABILITIES.map((group, gi) => (
+            <div
+              key={group.tier}
+              className="card p-5"
+              data-reveal
+              style={{ "--reveal-delay": `${gi * 90}ms` } as React.CSSProperties}
+            >
               <div className="flex items-baseline justify-between font-mono">
                 <span className="text-sm font-medium text-fg">{group.tier}</span>
                 <span className="text-[0.65rem] uppercase tracking-wider text-fg-dim">
@@ -186,8 +136,13 @@ export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }
           Timeline
         </h2>
         <ol className="relative mt-6 space-y-8 border-l border-border pl-6">
-          {TIMELINE.map((entry) => (
-            <li key={entry.title} className="relative">
+          {TIMELINE.map((entry, ti) => (
+            <li
+              key={entry.title}
+              className="relative"
+              data-reveal
+              style={{ "--reveal-delay": `${ti * 70}ms` } as React.CSSProperties}
+            >
               <span
                 aria-hidden="true"
                 className="absolute -left-[1.85rem] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-bg"
@@ -204,7 +159,7 @@ export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }
         </ol>
       </section>
 
-      {/* Education (with coursework) — kept toward the bottom. */}
+      {/* Education — compact card. */}
       <section className="mt-16">
         <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
           <GraduationCap className="h-4 w-4" aria-hidden="true" />
@@ -220,57 +175,7 @@ export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }
               {EDUCATION.awards.join(" · ")}
             </p>
           )}
-          <div className="mt-5">
-            <p className="font-mono text-[0.65rem] uppercase tracking-wider text-fg-dim">
-              Relevant coursework
-            </p>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {EDUCATION.coursework.map((course) => (
-                <span key={course} className="chip">
-                  {course}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
-      </section>
-
-      {/* Academic / coursework projects (§4.4). */}
-      <section className="mt-16">
-        <h2 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent">
-          <FlaskConical className="h-4 w-4" aria-hidden="true" />
-          Academic projects
-        </h2>
-        <ul className="mt-6 grid gap-5 sm:grid-cols-2">
-          {ACADEMIC_PROJECTS.map((project) => (
-            <li key={project.title} className="card card-hover p-5">
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="font-medium text-fg">{project.title}</h3>
-                {project.url && (
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 font-mono text-[0.65rem] uppercase tracking-wider text-accent hover:underline"
-                  >
-                    {project.urlLabel} ↗
-                  </a>
-                )}
-              </div>
-              <p className="mt-2 text-sm text-fg-dim">{project.description}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {project.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="font-mono text-[0.6rem] uppercase tracking-wider text-fg-dim"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </li>
-          ))}
-        </ul>
       </section>
     </section>
   );
