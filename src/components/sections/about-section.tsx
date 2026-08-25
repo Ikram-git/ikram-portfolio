@@ -137,7 +137,7 @@ export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }
           <Wrench className="h-4 w-4" aria-hidden="true" />
           Capabilities
         </h2>
-        <div className="mt-6 grid gap-5 md:grid-cols-3">
+        <div className="mt-6 grid gap-5 md:grid-cols-2">
           {CAPABILITIES.map((group) => (
             <div key={group.tier} className="card p-5">
               <div className="flex items-baseline justify-between font-mono">

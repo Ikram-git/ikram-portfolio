@@ -29,19 +29,13 @@ export const CAPABILITIES: {
 }[] = [
   {
     tier: "Advanced",
-    note: "Primary stack — daily drivers",
+    note: "Primary stack — production depth",
     items: [
       { label: "TypeScript", icon: "braces" },
       { label: "React / Next.js", icon: "atom" },
       { label: "Java / Spring Boot", icon: "leaf" },
       { label: "Python / FastAPI", icon: "zap" },
       { label: "PostgreSQL", icon: "database" },
-    ],
-  },
-  {
-    tier: "Intermediate",
-    note: "Production experience",
-    items: [
       { label: "C# / .NET", icon: "hash" },
       { label: "Node.js / Express", icon: "hexagon" },
       { label: "Smart contracts / blockchain", icon: "blocks" },
@@ -57,8 +51,8 @@ export const CAPABILITIES: {
     ],
   },
   {
-    tier: "Familiar",
-    note: "Hands-on exposure",
+    tier: "Intermediate",
+    note: "Working knowledge",
     items: [
       { label: "RAG / vector databases", icon: "brain" },
       { label: "BAC · PACE/SAC · ICAO 9303", icon: "shield-check" },
