@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { GithubIcon, LinkedinIcon } from "@/components/brand-icons";
+import { NavLinks, type NavItem } from "@/components/nav-links";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PROFILE } from "@/lib/profile";
 
 // Anchors into the one-page home — the standalone routes still exist for deep
 // links, but primary navigation scrolls the single page. CV serves the actual
 // PDF (single source of truth), not the generated /cv page.
-const NAV = [
+const NAV: NavItem[] = [
   { href: "/#work", label: "Work" },
   { href: "/#about", label: "About" },
   { href: "/#hiring", label: "Hiring" },
@@ -25,31 +26,7 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Primary" className="flex items-center gap-1">
-          <ul className="hidden items-center gap-1 sm:flex">
-            {NAV.map((item) => {
-              const isFile = item.href.endsWith(".pdf");
-              const cls =
-                "rounded-full px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider text-fg-dim transition-colors hover:bg-bg-raised hover:text-fg";
-              return (
-                <li key={item.href}>
-                  {isFile ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={cls}
-                    >
-                      {item.label}
-                    </a>
-                  ) : (
-                    <Link href={item.href} className={cls}>
-                      {item.label}
-                    </Link>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+          <NavLinks items={NAV} />
 
           <div className="ml-2 hidden items-center gap-1 border-l border-border pl-3 sm:flex">
             <a
