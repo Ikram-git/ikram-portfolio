@@ -55,11 +55,8 @@ export default function HomePage() {
             <span className="text-gradient">failure is expensive</span>.
           </h1>
           <p className="measure mt-6 text-lg leading-relaxed text-fg-dim">
-            Three years shipping software end to end — from a public passport and
-            national-ID application portal to an on-chain analysis platform over 18
-            million smart contracts. Frontend and backend, across React/Next.js,
-            Java, .NET and Python, with a focus on fintech and digital identity.
-            Based in Hong Kong, open to relocation.
+            Three years shipping software end to end — from a national passport
+            portal to on-chain analysis over 18M smart contracts.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-3">

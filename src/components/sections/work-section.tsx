@@ -22,10 +22,6 @@ export function WorkSection() {
         <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
           Engineering case studies
         </h2>
-        <p className="measure mt-4 text-fg-dim">
-          Each is framed by its engineering problem, with the domain supplying
-          the stakes.
-        </p>
       </header>
 
       <ol className="mt-12 grid gap-6 sm:grid-cols-2">
@@ -62,7 +58,7 @@ export function WorkSection() {
                   {cs.title}
                 </h3>
                 {cs.summary && !cs.summary.startsWith("TODO") && (
-                  <p className="mt-2 text-sm leading-relaxed text-fg-dim">
+                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-fg-dim">
                     {cs.summary}
                   </p>
                 )}

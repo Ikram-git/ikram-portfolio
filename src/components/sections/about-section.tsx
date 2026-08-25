@@ -5,6 +5,7 @@ import {
   Braces,
   Brain,
   BrainCircuit,
+  Briefcase,
   Cloud,
   Container,
   Database,
@@ -15,8 +16,11 @@ import {
   Hash,
   Hexagon,
   History,
+  Landmark,
   Leaf,
+  LifeBuoy,
   Link as LinkIcon,
+  MapPin,
   Network,
   ShieldCheck,
   Smartphone,
@@ -95,26 +99,34 @@ export function AboutSection({ showPortrait = true }: { showPortrait?: boolean }
         </div>
       </header>
 
-      {/* Narrative — plain, skills/stack-led (not a project recap). */}
+      {/* Narrative — one line; the chips and capability grid carry the detail. */}
       <div className="measure mt-8 space-y-4 text-fg-dim">
         <p>
-          I&apos;m a software developer based in Hong Kong, with a BSc in Computer
-          Science from HK PolyU and around three years of production experience.
+          Full-stack developer who owns features end to end, in domains where
+          correctness matters.
         </p>
-        <p>
-          I work across the stack. On the front end that&apos;s React, Next.js and
-          TypeScript; on the back end, Java/Spring Boot, C#/.NET and Python/FastAPI,
-          on PostgreSQL. For delivery I use AWS, Docker and Jenkins, and I&apos;ve
-          carried L2/L3 production support under SLA. I&apos;m comfortable owning a
-          feature end to end and picking up whatever a problem needs.
-        </p>
-        <p>
-          Most of my work sits in fintech, on-chain analysis and digital identity —
-          domains where correctness matters. In Hong Kong I&apos;m looking for
-          opportunities in finance and fintech, where that background is most
-          useful; outside Hong Kong I&apos;m open to general software engineering
-          roles, and I&apos;m open to relocation.
-        </p>
+        <ul className="flex flex-wrap gap-2.5">
+          <li className="chip">
+            <MapPin className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+            Hong Kong · open to relocation
+          </li>
+          <li className="chip">
+            <Briefcase className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+            3 yrs production experience
+          </li>
+          <li className="chip">
+            <Landmark className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+            Fintech · on-chain · identity
+          </li>
+          <li className="chip">
+            <GraduationCap className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+            BSc CS, HK PolyU
+          </li>
+          <li className="chip">
+            <LifeBuoy className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
+            L2/L3 ops under SLA
+          </li>
+        </ul>
       </div>
 
       {/* Work is the main thing — link straight to it. */}

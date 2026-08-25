@@ -1,5 +1,12 @@
-import { ClipboardList, Mail, ShieldCheck, Target } from "lucide-react";
-import { PROFILE, LOOKING_FOR, LOGISTICS } from "@/lib/profile";
+import {
+  CircleCheck,
+  ClipboardList,
+  Globe,
+  Mail,
+  ShieldCheck,
+  Target,
+} from "lucide-react";
+import { LOOKING_FOR, LOGISTICS } from "@/lib/profile";
 import { VISA_ROUTES, LAST_VERIFIED } from "@/lib/visa-routes";
 import { ContactForm } from "@/components/contact-form";
 import { PrintButton } from "@/components/print-button";
@@ -32,13 +39,7 @@ export function HiringSection() {
             Hiring me: the honest logistics
           </h2>
           <p className="measure mt-4 text-fg-dim">
-            I&apos;m a {PROFILE.residency} and {PROFILE.nationality} national,
-            based in {PROFILE.location}. In Hong Kong I&apos;m looking for
-            opportunities in finance and fintech — as a permanent resident I
-            need no sponsorship there. Outside Hong Kong I&apos;m open to
-            general software development roles, which means employer
-            sponsorship almost everywhere. Here&apos;s exactly what that
-            involves for you — no surprises.
+            Here&apos;s exactly what hiring me involves — no surprises.
           </p>
         </div>
         <PrintButton label="One-pager (PDF)" />
@@ -51,8 +52,7 @@ export function HiringSection() {
           What I&apos;m looking for
         </h2>
         <p className="measure mt-3 text-sm text-fg-dim">
-          A rough shape, not a checklist — if the role is interesting and you
-          sponsor, I&apos;d like to talk.
+          A rough shape, not a checklist.
         </p>
         <div className="card mt-4 divide-y divide-border px-5">
           <Row label="Level">{LOOKING_FOR.level}</Row>
@@ -79,16 +79,28 @@ export function HiringSection() {
           <ShieldCheck className="h-4 w-4" aria-hidden="true" />
           Work authorisation, plainly
         </h2>
-        <p className="measure mt-3 text-sm text-fg-dim">
-          <strong className="font-medium text-fg">In Hong Kong: nothing to
-          do.</strong>{" "}
-          I&apos;m a permanent resident with full right to work — no visa, no
-          sponsorship, no lead time. The table below is for roles outside Hong
-          Kong: the sponsorship routes that apply to me, with the salary floor,
-          what you&apos;d do, and rough timelines. As a non-EU/UK national I
-          also need an entry visa (e.g. an MVV for the Netherlands) — a
-          standard step your immigration team handles.
-        </p>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div className="card p-5">
+            <div className="flex items-center gap-2 font-mono text-sm font-medium text-fg">
+              <CircleCheck className="h-4 w-4 text-ok" aria-hidden="true" />
+              Hong Kong — nothing to do
+            </div>
+            <p className="mt-2 text-sm text-fg-dim">
+              Permanent resident, full right to work. No visa, no sponsorship,
+              no lead time.
+            </p>
+          </div>
+          <div className="card p-5">
+            <div className="flex items-center gap-2 font-mono text-sm font-medium text-fg">
+              <Globe className="h-4 w-4 text-accent" aria-hidden="true" />
+              Outside Hong Kong — sponsor me
+            </div>
+            <p className="mt-2 text-sm text-fg-dim">
+              Routes below with salary floors and timelines. The entry visa is
+              a standard step your immigration team handles.
+            </p>
+          </div>
+        </div>
 
         <div className="card mt-6 overflow-x-auto px-5 py-1">
           <table className="w-full border-collapse text-left text-sm">
