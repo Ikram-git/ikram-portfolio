@@ -3,10 +3,12 @@ import { GithubIcon, LinkedinIcon } from "@/components/brand-icons";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PROFILE } from "@/lib/profile";
 
+// Anchors into the one-page home — the standalone routes still exist for deep
+// links, but primary navigation scrolls the single page.
 const NAV = [
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/hiring", label: "Hiring" },
+  { href: "/#work", label: "Work" },
+  { href: "/#about", label: "About" },
+  { href: "/#hiring", label: "Hiring" },
   { href: "/cv", label: "CV" },
 ];
 

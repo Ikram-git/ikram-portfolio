@@ -1,9 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Boxes, FileDown, GraduationCap, Landmark, Layers, LifeBuoy, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, Boxes, FileDown, GraduationCap, Landmark, Layers, LifeBuoy, Mail, ShieldCheck } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/brand-icons";
 import { ScaleLedger } from "@/components/scale-ledger";
-import { getCaseStudies } from "@/lib/content";
+import { AboutSection } from "@/components/sections/about-section";
+import { HiringSection } from "@/components/sections/hiring-section";
+import { WorkSection } from "@/components/sections/work-section";
 import { PROFILE } from "@/lib/profile";
 
 /**
@@ -24,10 +26,6 @@ const PROOF = [
 ];
 
 export default function HomePage() {
-  const featured = getCaseStudies()
-    .filter((cs) => cs.featured)
-    .slice(0, 3);
-
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -66,7 +64,7 @@ export default function HomePage() {
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <Link
-              href="/work"
+              href="/#work"
               className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 font-mono text-sm text-white shadow-lg shadow-accent/25 transition-all hover:shadow-accent/40 hover:brightness-110"
             >
               See the work
@@ -154,66 +152,16 @@ export default function HomePage() {
         <ScaleLedger />
       </div>
 
-      {/* Block 3 — Selected work (§4.1). */}
-      <section aria-labelledby="work-heading" className="py-12">
-        <div className="flex items-baseline justify-between">
-          <h2
-            id="work-heading"
-            className="font-mono text-xs uppercase tracking-[0.2em] text-accent"
-          >
-            Selected work
-          </h2>
-          <Link
-            href="/work"
-            className="group inline-flex items-center gap-1 font-mono text-xs text-fg-dim transition-colors hover:text-accent"
-          >
-            All work
-            <ArrowRight
-              className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
-              aria-hidden="true"
-            />
-          </Link>
-        </div>
-
-        <ol className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((cs, i) => (
-            <li key={cs.slug} className="card card-hover group relative">
-              <Link
-                href={`/work/${cs.slug}`}
-                className="flex h-full flex-col p-6"
-              >
-                <div className="flex items-center justify-between font-mono text-xs text-fg-dim">
-                  <span className="text-accent">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    {cs.confidential && (
-                      <span className="uppercase tracking-wider">NDA</span>
-                    )}
-                    <ArrowUpRight
-                      className="h-4 w-4 text-fg-dim transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </div>
-                <h3 className="mt-3 text-lg font-semibold leading-snug tracking-tight text-fg transition-colors group-hover:text-accent">
-                  {cs.title}
-                </h3>
-                <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
-                  {cs.problemType.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full border border-border px-2.5 py-0.5 font-mono text-[0.65rem] uppercase tracking-wider text-fg-dim"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ol>
-      </section>
+      {/* One-page sections — same components as the /work, /about and /hiring routes. */}
+      <div className="border-t border-border">
+        <WorkSection />
+      </div>
+      <div className="border-t border-border">
+        <AboutSection showPortrait={false} />
+      </div>
+      <div className="border-t border-border">
+        <HiringSection />
+      </div>
     </div>
   );
 }
