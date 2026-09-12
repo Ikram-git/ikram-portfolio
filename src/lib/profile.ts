@@ -67,13 +67,19 @@ export const CAPABILITIES: {
 /** Compact, dated timeline (§4.4), from the CV. */
 export const TIMELINE: { period: string; title: string; detail: string }[] = [
   {
-    period: "2024–present",
+    period: "2026–present",
+    title: "Quant Developer · Polymer Capital Management",
+    detail:
+      "Portfolio & risk systems in C#/.NET and Python data pipelines for an Asia-Pacific multi-manager platform — backtesting infrastructure and automated performance, exposure and attribution reporting.",
+  },
+  {
+    period: "2024–2026",
     title: "Full-Stack Developer · Toppan Security",
     detail:
       "Public passport & national-ID application portal, built front to back; MEA rollout with L2/L3 support under SLA.",
   },
   {
-    period: "2025–present",
+    period: "2025–2026",
     title: "Software Developer (part-time) · HK PolyU",
     detail:
       "LLM-powered Solidity smart-contract auditor and a stablecoin compliance frontend.",
