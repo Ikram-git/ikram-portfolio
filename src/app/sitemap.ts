@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getCaseStudies } from "@/lib/content";
-
-const SITE_URL = "https://ikramsattar.dev";
+import { SITE_URL } from "@/lib/site";
 
 const STATIC_ROUTES = ["", "/work", "/about", "/hiring", "/cv"];
 

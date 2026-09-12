@@ -128,6 +128,14 @@ export const ACADEMIC_PROJECTS: {
   urlLabel: string;
 }[] = [
   {
+    title: "Multi-Threaded Elevator Control System",
+    description:
+      "An elevator control simulation built around multithreading — concurrent request handling across multiple elevator threads with thread-safe scheduling and synchronised access to shared state.",
+    skills: ["Java", "Multithreading", "Concurrency"],
+    url: null,
+    urlLabel: "",
+  },
+  {
     title: "UTXO-based blockchain platform",
     description:
       "A blockchain system with block mining, transactions, a peer-to-peer network, and database storage for blocks and transactions.",

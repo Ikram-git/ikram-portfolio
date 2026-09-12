@@ -8,6 +8,7 @@ import {
 } from "@/lib/profile";
 import { getCaseStudies } from "@/lib/content";
 import { PrintButton } from "@/components/print-button";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "CV",
@@ -25,7 +26,7 @@ const personJsonLd = {
     "@type": "CollegeOrUniversity",
     name: EDUCATION.institution,
   },
-  url: "https://ikramsattar.dev",
+  url: SITE_URL,
 };
 
 export default function CvPage() {

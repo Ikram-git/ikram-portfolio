@@ -7,6 +7,7 @@ import { AboutSection } from "@/components/sections/about-section";
 import { HiringSection } from "@/components/sections/hiring-section";
 import { WorkSection } from "@/components/sections/work-section";
 import { PROFILE } from "@/lib/profile";
+import { SITE_URL } from "@/lib/site";
 
 /**
  * Home (§4.1). Hero register per spec; proof-strip facts are the non-fabricated
@@ -32,7 +33,7 @@ export default function HomePage() {
     name: "Ikram Sattar",
     jobTitle: "Full-Stack Developer",
     address: { "@type": "PostalAddress", addressLocality: "Hong Kong" },
-    url: "https://ikramsattar.dev",
+    url: SITE_URL,
   };
 
   return (

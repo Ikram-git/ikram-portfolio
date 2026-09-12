@@ -4,6 +4,7 @@ import { RevealObserver } from "@/components/reveal-observer";
 import { ThemeScript } from "@/components/theme-script";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const SITE_NAME = "Ikram Sattar";
@@ -11,7 +12,7 @@ const SITE_DESCRIPTION =
   "Full-stack developer who ships production systems where failure is expensive — fintech and on-chain analysis, digital identity, polyglot microservices, CI/CD and on-call ownership under SLA.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ikramsattar.dev"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${SITE_NAME} — Full-Stack Developer`,
     template: `%s — ${SITE_NAME}`,

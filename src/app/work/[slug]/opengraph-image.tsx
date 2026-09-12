@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getCaseStudies, getCaseStudy } from "@/lib/content";
+import { SITE_HOST } from "@/lib/site";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -60,7 +61,7 @@ export default async function OgImage({
             color: "#8A8FA0",
           }}
         >
-          <span style={{ display: "flex", color: "#7B5CFF" }}>ikramsattar.dev</span>
+          <span style={{ display: "flex", color: "#7B5CFF" }}>{SITE_HOST}</span>
           <span style={{ display: "flex" }}>{tags}</span>
         </div>
       </div>
